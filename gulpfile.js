@@ -1,5 +1,4 @@
 'use strict';
-
 var gulp = require('gulp'),
     webserver = require('gulp-webserver'),
     sass = require('gulp-sass'),
