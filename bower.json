@@ -1,0 +1,37 @@
+{
+  "name": "mypro",
+  "description": "my first angular",
+  "main": "index.html",
+  "authors": [
+    "Aliot"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7",
+    "angular": "~1.5.8",
+    "angular-route": "~1.5.8",
+    "angular-resource": "~1.5.0",
+    "angular-sanitize": "~1.5.0",
+    "angular-animate": "~1.5.0",
+    "angular-cookies": "~1.5.0",
+    "angular-touch": "~1.5.0",
+    "angular-loader": "~1.5.0",
+    "angular-i18n": "~1.5.0",
+    "firebase": "~3.4.0",
+    "angularfire": "~2.0.2"
+  },
+  "resolutions": {
+    "bootstrap": "^3.3.7",
+    "jquery": "1.9.1 - 3"
+  }
+}

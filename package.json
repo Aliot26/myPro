@@ -1,0 +1,22 @@
+{
+  "name": "mypro",
+  "version": "1.0.0",
+  "description": "my first angular",
+  "main": "index.html",
+  "dependencies": {
+    "bower": "~1.7.9"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aliot",
+  "license": "ISC",
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-csso": "^2.0.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-webserver": "^0.9.1"
+  }
+}
