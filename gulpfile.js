@@ -21,7 +21,7 @@ gulp.task('html', function() {
 gulp.task('sass', function () {
     gulp.src('builds/development/sass/**/*')
         .pipe(sass())
-        .pipe(concat('style.min.css'))
+        //.pipe(concat('style.min.css'))
         .pipe(csso())
         .pipe(gulp.dest('builds/dist/css/'));
 });
