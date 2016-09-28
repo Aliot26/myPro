@@ -21,7 +21,7 @@ gulp.task('html', function() {
 gulp.task('sass', function () {
     gulp.src('builds/development/sass/**/*')
         .pipe(sass())
-        //.pipe(concat('style.min.css'))
+        .pipe(concat('style.css'))
         .pipe(csso())
         .pipe(gulp.dest('builds/dist/css/'));
 });
@@ -58,7 +58,7 @@ gulp.task('libs', function() {
         bc+'angular-sanitize/angular-sanitize.js',
         bc+'angular-touch/angular-touch.js',
         bc+'firebase/firebase.js',
-        bc+'angularfire/dist/angularfire.js',
+        bc+'angularfire/dist/angularfire.js'
     ])
         .pipe(concat('angular.concat.js'))
         .pipe(gulp.dest('./builds/dist/libs/angular/'));
