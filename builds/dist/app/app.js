@@ -1,7 +1,18 @@
 // initialize material design js
 $.material.init();
 
-angular.module('ngFit', []);
+function() {
+    'use strict';
+
+    angular
+        .module('ngFit', [])
+        .config(ngFitConfig);
+
+    function ngFitConfig($routeProvider) {
+        $routeProvider
+    }
+}();
+
 /**
  * Created by szaharov on 28/05/15.
  */
