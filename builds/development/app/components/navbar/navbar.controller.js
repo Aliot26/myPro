@@ -1,3 +1,9 @@
-/**
- * Created by szaharov on 28/05/15.
- */
+angular.module('ngFit.navbar', ['ngRoute'])
+
+//.config(['$routeProvider', function ($routeProvider) {
+//    SrouteProvider.when
+//}])
+
+//.controller('NavbarCtrl',['$scope', function() {
+//
+//    }])

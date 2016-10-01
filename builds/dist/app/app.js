@@ -4,7 +4,11 @@ $.material.init();
     'use strict';
 
     angular
-        .module('ngFit', ['ngRoute'])
+        .module('ngFit', [
+            'ngRoute',
+            'ngFit.about',
+            'ngFit.contact'
+        ])
         .config(ngFitConfig)
         .controller('MainCtrl', MainCtrl)
         .controller('AboutCtrl', AboutCtrl);
@@ -14,14 +18,6 @@ $.material.init();
             .when('/',{
                 templateUrl:'/view/index.html',
                 controller: 'MainCtrl'
-            })
-            .when('/about',{
-                templateUrl:'/view/about.html',
-                controller: 'AboutCtrl'
-            })
-            .when('/contact',{
-                templateUrl:'/view/contact.html'
-                //controller: 'ContactCtrl'
             });
     }
 
@@ -37,6 +33,39 @@ $.material.init();
  * Created by szaharov on 28/05/15.
  */
 
-/**
- * Created by szaharov on 28/05/15.
- */
+angular.module('ngFit.contact', ['ngRoute'])
+
+.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider
+        .when('/about',{
+            templateUrl:'app/components/about/about.html',
+            controller: 'AboutCtrl'
+        });
+}])
+
+.controller('AboutCtrl', ['$scope', function ($scope) {
+    $scope.title = "This is scope title About";
+}])
+
+angular.module('ngFit.contact', ['ngRoute'])
+
+.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider
+        .when('/contact',{
+        templateUrl:'app/components/contact/contact.html',
+        controller: 'ContactCtrl'
+    });
+}])
+
+.controller('ContactCtrl', ['$scope', function ($scope) {
+    
+}])
+angular.module('ngFit.navbar', ['ngRoute'])
+
+//.config(['$routeProvider', function ($routeProvider) {
+//    SrouteProvider.when
+//}])
+
+//.controller('NavbarCtrl',['$scope', function() {
+//
+//    }])

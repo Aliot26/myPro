@@ -4,7 +4,11 @@ $.material.init();
     'use strict';
 
     angular
-        .module('ngFit', ['ngRoute'])
+        .module('ngFit', [
+            'ngRoute',
+            'ngFit.about',
+            'ngFit.contact'
+        ])
         .config(ngFitConfig)
         .controller('MainCtrl', MainCtrl)
         .controller('AboutCtrl', AboutCtrl);
@@ -14,14 +18,6 @@ $.material.init();
             .when('/',{
                 templateUrl:'/view/index.html',
                 controller: 'MainCtrl'
-            })
-            .when('/about',{
-                templateUrl:'/view/about.html',
-                controller: 'AboutCtrl'
-            })
-            .when('/contact',{
-                templateUrl:'/view/contact.html'
-                //controller: 'ContactCtrl'
             });
     }
 
