@@ -1,4 +1,4 @@
-angular.module('ngFit.contact', ['ngRoute'])
+angular.module('ngFit.about', ['ngRoute'])
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider

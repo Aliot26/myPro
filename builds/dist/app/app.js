@@ -10,8 +10,7 @@ $.material.init();
             'ngFit.contact'
         ])
         .config(ngFitConfig)
-        .controller('MainCtrl', MainCtrl)
-        .controller('AboutCtrl', AboutCtrl);
+        .controller('MainCtrl', MainCtrl);
 
     function ngFitConfig($routeProvider) {
         $routeProvider
@@ -24,16 +23,14 @@ $.material.init();
     function MainCtrl($scope) {
         $scope.title = "This is our first scope title";
     }
-    function AboutCtrl($scope) {
-        $scope.title = "This is scope title About";
-    }
+
 })();
 
 /**
  * Created by szaharov on 28/05/15.
  */
 
-angular.module('ngFit.contact', ['ngRoute'])
+angular.module('ngFit.about', ['ngRoute'])
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
@@ -58,7 +55,7 @@ angular.module('ngFit.contact', ['ngRoute'])
 }])
 
 .controller('ContactCtrl', ['$scope', function ($scope) {
-    
+    $scope.title = "This is scope title Contact";
 }])
 angular.module('ngFit.navbar', ['ngRoute'])
 
