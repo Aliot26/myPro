@@ -1,17 +1,19 @@
 // initialize material design js
 $.material.init();
-
-function() {
+(function(){
     'use strict';
 
     angular
-        .module('ngFit', [])
+        .module('ngFit', ['ngRoute'])
         .config(ngFitConfig);
 
     function ngFitConfig($routeProvider) {
         $routeProvider
+            .when('/',{
+                templateUrl:'/view/index.html'
+            });
     }
-}();
+})();
 
 /**
  * Created by szaharov on 28/05/15.
