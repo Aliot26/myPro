@@ -6,22 +6,18 @@ $.material.init();
     angular
         .module('ngFit', [
             'ngRoute',
+            'ngFit.main',
             'ngFit.about',
             'ngFit.contact'
         ])
-        .config(ngFitConfig)
-        .controller('MainCtrl', MainCtrl);
+        .config(Config)
 
-    function ngFitConfig($routeProvider) {
-        $routeProvider
-            .when('/',{
-                templateUrl:'/view/index.html',
-                controller: 'MainCtrl'
-            });
-    }
 
-    function MainCtrl($scope) {
-        $scope.title = "This is our first scope title";
+    function Config($routeProvider, $locationProvider, $logProvider) {
+        $routeProvider.
+            otherwise({redirectTo: '/'});
+        $locationProvider.html5Mode(true);
+        $logProvider.debugEnable(true);
     }
 
 })();
