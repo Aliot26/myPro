@@ -16,8 +16,8 @@ $.material.init();
     function Config($routeProvider, $locationProvider, $logProvider) {
         $routeProvider.
             otherwise({redirectTo: '/'});
-        $locationProvider.html5Mode(true);
-        $logProvider.debugEnable(true);
+        //$locationProvider.html5Mode(true);
+       // $logProvider.debugEnable(true);
     }
 
 })();
@@ -27,7 +27,7 @@ angular.module('ngFit.main', ['ngRoute'])
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
         when('/', {
-        templateUrl: 'app/components/.hnml',
+        templateUrl: 'app/components/.html',
         controller: 'MainCtrl'
     })
 }])

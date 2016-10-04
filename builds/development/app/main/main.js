@@ -3,7 +3,7 @@ angular.module('ngFit.main', ['ngRoute'])
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
         when('/', {
-        templateUrl: 'app/components/.hnml',
+        templateUrl: 'app/components/.html',
         controller: 'MainCtrl'
     })
 }])
