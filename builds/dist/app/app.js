@@ -6,30 +6,40 @@ $.material.init();
     angular
         .module('ngFit', [
             'ngRoute',
+            'ngFit.main',
             'ngFit.about',
             'ngFit.contact'
         ])
-        .config(ngFitConfig)
-        .controller('MainCtrl', MainCtrl);
+        .config(Config)
 
-    function ngFitConfig($routeProvider) {
-        $routeProvider
-            .when('/',{
-                templateUrl:'/view/index.html',
-                controller: 'MainCtrl'
-            });
-    }
 
-    function MainCtrl($scope) {
-        $scope.title = "This is our first scope title";
+    function Config($routeProvider, $locationProvider, $logProvider) {
+        $routeProvider.
+            otherwise({redirectTo: '/'});
+        $locationProvider.html5Mode(true);
+        $logProvider.debugEnable(true);
     }
 
 })();
 
-/**
- * Created by szaharov on 28/05/15.
- */
+angular.module('ngFit.main', ['ngRoute'])
 
+.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider.
+        when('/', {
+        templateUrl: 'app/components/.hnml',
+        controller: 'MainCtrl'
+    })
+}])
+
+.controller('MainCtrl',
+    ['$scope', function ($scope) {
+        $scope.title = 'Hello page';
+        $scope.name = 'Mnya';
+        $scope.clickFunction = function (name) {
+        alert('Hi,' + name);
+        }
+    }])
 angular.module('ngFit.about', ['ngRoute'])
 
 .config(['$routeProvider', function ($routeProvider) {
