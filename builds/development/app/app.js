@@ -12,12 +12,14 @@ $.material.init();
         ])
         .config(Config)
 
+    Config.$inject = ['$routeProvider', '$locationProvider', '$logProvider'];
+
 
     function Config($routeProvider, $locationProvider, $logProvider) {
         $routeProvider.
             otherwise({redirectTo: '/'});
-        //$locationProvider.html5Mode(true);
-       // $logProvider.debugEnable(true);
+        $locationProvider.html5Mode(true);
+        $logProvider.debugEnable(true);
     }
 
 })();

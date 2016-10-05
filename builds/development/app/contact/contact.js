@@ -3,7 +3,7 @@ angular.module('ngFit.contact', ['ngRoute'])
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/contact',{
-        templateUrl:'app/components/contact/contact.html',
+        templateUrl:'app/contact/contact.html',
         controller: 'ContactCtrl'
     });
 }])

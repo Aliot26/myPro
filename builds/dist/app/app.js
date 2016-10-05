@@ -12,40 +12,24 @@ $.material.init();
         ])
         .config(Config)
 
+    Config.$inject = ['$routeProvider', '$locationProvider', '$logProvider'];
+
 
     function Config($routeProvider, $locationProvider, $logProvider) {
         $routeProvider.
             otherwise({redirectTo: '/'});
-        //$locationProvider.html5Mode(true);
-       // $logProvider.debugEnable(true);
+        $locationProvider.html5Mode(true);
+        $logProvider.debugEnable(true);
     }
 
 })();
 
-angular.module('ngFit.main', ['ngRoute'])
-
-.config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.
-        when('/', {
-        templateUrl: 'app/components/.html',
-        controller: 'MainCtrl'
-    })
-}])
-
-.controller('MainCtrl',
-    ['$scope', function ($scope) {
-        $scope.title = 'Hello page';
-        $scope.name = 'Mnya';
-        $scope.clickFunction = function (name) {
-        alert('Hi,' + name);
-        }
-    }])
 angular.module('ngFit.about', ['ngRoute'])
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/about',{
-            templateUrl:'app/components/about/about.html',
+            templateUrl:'app/about/about.html',
             controller: 'AboutCtrl'
         });
 }])
@@ -59,7 +43,7 @@ angular.module('ngFit.contact', ['ngRoute'])
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/contact',{
-        templateUrl:'app/components/contact/contact.html',
+        templateUrl:'app/contact/contact.html',
         controller: 'ContactCtrl'
     });
 }])
@@ -67,6 +51,24 @@ angular.module('ngFit.contact', ['ngRoute'])
 .controller('ContactCtrl', ['$scope', function ($scope) {
     $scope.title = "This is scope title Contact";
 }])
+angular.module('ngFit.main', ['ngRoute'])
+
+.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider.
+        when('/', {
+        templateUrl: 'app/main.html',
+        controller: 'MainCtrl'
+    })
+}])
+
+.controller('MainCtrl',
+    ['$scope', function ($scope) {
+        $scope.title = 'Hello page';
+        $scope.name = 'Mnya';
+        $scope.clickFunction = function (name) {
+        alert('Hi,' + name);
+        }
+    }])
 angular.module('ngFit.navbar', ['ngRoute'])
 
 //.config(['$routeProvider', function ($routeProvider) {
