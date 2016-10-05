@@ -19,7 +19,8 @@ $.material.init();
         $routeProvider.
             otherwise({redirectTo: '/'});
         $locationProvider.html5Mode(true);
-        $logProvider.debugEnable(true);
+        ///$logProvider.debugEnable(true);
+        
     }
 
 })();

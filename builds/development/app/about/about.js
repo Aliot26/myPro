@@ -1,6 +1,7 @@
-angular.module('ngFit.about', ['ngRoute'])
+angular
+    .module('ngFit.about', ['ngRoute'])
 
-.config(['$routeProvider', function ($routeProvider) {
+    .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/about',{
             templateUrl:'app/about/about.html',

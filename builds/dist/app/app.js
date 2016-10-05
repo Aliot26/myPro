@@ -19,14 +19,16 @@ $.material.init();
         $routeProvider.
             otherwise({redirectTo: '/'});
         $locationProvider.html5Mode(true);
-        $logProvider.debugEnable(true);
+        ///$logProvider.debugEnable(true);
+        
     }
 
 })();
 
-angular.module('ngFit.about', ['ngRoute'])
+angular
+    .module('ngFit.about', ['ngRoute'])
 
-.config(['$routeProvider', function ($routeProvider) {
+    .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/about',{
             templateUrl:'app/about/about.html',
@@ -51,24 +53,46 @@ angular.module('ngFit.contact', ['ngRoute'])
 .controller('ContactCtrl', ['$scope', function ($scope) {
     $scope.title = "This is scope title Contact";
 }])
-angular.module('ngFit.main', ['ngRoute'])
+(function(){
+   "use strict";
 
-.config(['$routeProvider', function ($routeProvider) {
+angular
+    .module('ngFit.main', ['ngRoute'])
+    .config(configMain)
+    .controller('MainCtrl', MainCtrl);
+
+MainCtrl.$inject = ['$scope', '$rootScope', '$log'];
+
+function MainCtrl($scope, $rootScope, $log){
+    $log.debug('MainCtrl start');
+
+    $log._first = 'First property';
+    $log.log($log);
+    var vm = this;
+
+    $rootScope.curPath = 'main';
+
+    vm.title = 'This is hello\'s page';
+    vm.name = 'Aliot';
+    $scope.clickFunction = function(name){
+        alert('Hi, ' + name);
+    };
+
+    $log.debug('MainCtrl finish');
+};
+
+configMain.$inject = ['$routeProvider'];
+
+function configMain($routeProvider) {
     $routeProvider.
         when('/', {
-        templateUrl: 'app/main.html',
-        controller: 'MainCtrl'
-    })
-}])
+        templateUrl: 'app/main/main.html',
+        controller: 'MainCtrl',
+        controllerAs: 'vm'
+    });
+};
 
-.controller('MainCtrl',
-    ['$scope', function ($scope) {
-        $scope.title = 'Hello page';
-        $scope.name = 'Mnya';
-        $scope.clickFunction = function (name) {
-        alert('Hi,' + name);
-        }
-    }])
+})
 angular.module('ngFit.navbar', ['ngRoute'])
 
 //.config(['$routeProvider', function ($routeProvider) {
