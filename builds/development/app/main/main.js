@@ -7,9 +7,9 @@ angular
     .constant('FIREBASE_URL', 'aaaaaaaaaaa')    
     .controller('MainCtrl', MainCtrl);
 
-MainCtrl.$inject = ['$scope', '$rootScope', '$log', 'FIREBASE_URL', 'some_val'];
+MainCtrl.$inject = ['$scope', '$rootScope', '$log', 'FIREBASE_URL'];
 
-function MainCtrl($scope, $rootScope, $log, FIREBASE_URL, some_val){
+function MainCtrl($scope, $rootScope, $log, FIREBASE_URL){
     $log.debug('MainCtrl start');
 
     $log._first = 'First property';
