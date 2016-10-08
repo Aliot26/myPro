@@ -5,11 +5,12 @@
         .config(['$routeProvider', config])
         .controller('AboutCtrl', AboutCtrl);
 
-    AboutCtrl.$inject = ['$scope', '$rootScope', '$log'];
+    AboutCtrl.$inject = ['$scope', '$rootScope', '$log', 'some_val'];
 
-    function AboutCtrl($scope, $rootScope, $log){
+    function AboutCtrl($scope, $rootScope, $log, some_val){
         var vm = this;
         $rootScope.curPath = 'about';
+        some_val = 'about';
     }
 
     function config($routeProvider) {

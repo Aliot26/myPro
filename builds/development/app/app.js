@@ -11,6 +11,7 @@ $.material.init();
             'ngFit.contact'
         ])
         .config(Config)
+        .value('some_val', 'this is some wow')
 
     Config.$inject = ['$routeProvider', '$locationProvider', '$logProvider'];
 

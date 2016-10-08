@@ -11,6 +11,7 @@ $.material.init();
             'ngFit.contact'
         ])
         .config(Config)
+        .value('some_val', 'this is some wow')
 
     Config.$inject = ['$routeProvider', '$locationProvider', '$logProvider'];
 
@@ -32,11 +33,12 @@ $.material.init();
         .config(['$routeProvider', config])
         .controller('AboutCtrl', AboutCtrl);
 
-    AboutCtrl.$inject = ['$scope', '$rootScope', '$log'];
+    AboutCtrl.$inject = ['$scope', '$rootScope', '$log', 'some_val'];
 
-    function AboutCtrl($scope, $rootScope, $log){
+    function AboutCtrl($scope, $rootScope, $log, some_val){
         var vm = this;
         $rootScope.curPath = 'about';
+        some_val = 'about';
     }
 
     function config($routeProvider) {
@@ -81,9 +83,7 @@ $.material.init();
 angular
     .module('ngFit.main', ['ngRoute'])
     .config(configMain)
-    .constant('FIREBASE_URL', 'aaaaaaaaaaa')
-    .value('some_val', 'dddddd')
-
+    .constant('FIREBASE_URL', 'aaaaaaaaaaa')    
     .controller('MainCtrl', MainCtrl);
 
 MainCtrl.$inject = ['$scope', '$rootScope', '$log', 'FIREBASE_URL', 'some_val'];
@@ -96,6 +96,7 @@ function MainCtrl($scope, $rootScope, $log, FIREBASE_URL, some_val){
     var VM = this;
 
     $rootScope.curPath = 'main';
+   
     VM.url = FIREBASE_URL;
     VM.title = 'This is hello\'s page';
     VM.name = 'Aliot';
