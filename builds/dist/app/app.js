@@ -58,11 +58,12 @@ $.material.init();
         .config(['$routeProvider', config])
         .controller('ContactCtrl', ContactCtrl);
 
-    ContactCtrl.$inject = ['$scope', '$rootScope', '$log'];
+    ContactCtrl.$inject = ['$scope', '$rootScope', '$log', 'some_val'];
     
-    function ContactCtrl($scope, $rootScope, $log){
+    function ContactCtrl($scope, $rootScope, $log, some_val){
         var vm = this;
         $rootScope.curPath = 'contact';
+        vm.some = some_val;
     }
 
     function config($routeProvider) {
@@ -80,21 +81,24 @@ $.material.init();
 angular
     .module('ngFit.main', ['ngRoute'])
     .config(configMain)
+    .constant('FIREBASE_URL', 'aaaaaaaaaaa')
+    .value('some_val', 'dddddd')
+
     .controller('MainCtrl', MainCtrl);
 
-MainCtrl.$inject = ['$scope', '$rootScope', '$log'];
+MainCtrl.$inject = ['$scope', '$rootScope', '$log', 'FIREBASE_URL', 'some_val'];
 
-function MainCtrl($scope, $rootScope, $log){
+function MainCtrl($scope, $rootScope, $log, FIREBASE_URL, some_val){
     $log.debug('MainCtrl start');
 
     $log._first = 'First property';
     $log.log($log);
-    var vm = this;
+    var VM = this;
 
     $rootScope.curPath = 'main';
-
-    vm.title = 'This is hello\'s page';
-    vm.name = 'Aliot';
+    VM.url = FIREBASE_URL;
+    VM.title = 'This is hello\'s page';
+    VM.name = 'Aliot';
     $scope.clickFunction = function(name){
         alert('Hi, ' + name);
     };
@@ -102,9 +106,9 @@ function MainCtrl($scope, $rootScope, $log){
     $log.debug('MainCtrl finish');
 }
 
-configMain.$inject = ['$routeProvider'];
+configMain.$inject = ['$routeProvider', 'FIREBASE_URL'];
 
-function configMain($routeProvider){
+function configMain($routeProvider, FIREBASE_URL){
     $routeProvider.
         when('/', {
         templateUrl: 'app/main/main.html',

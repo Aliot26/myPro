@@ -6,11 +6,12 @@
         .config(['$routeProvider', config])
         .controller('ContactCtrl', ContactCtrl);
 
-    ContactCtrl.$inject = ['$scope', '$rootScope', '$log'];
+    ContactCtrl.$inject = ['$scope', '$rootScope', '$log', 'some_val'];
     
-    function ContactCtrl($scope, $rootScope, $log){
+    function ContactCtrl($scope, $rootScope, $log, some_val){
         var vm = this;
         $rootScope.curPath = 'contact';
+        vm.some = some_val;
     }
 
     function config($routeProvider) {
