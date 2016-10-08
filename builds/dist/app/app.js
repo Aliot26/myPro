@@ -18,41 +18,62 @@ $.material.init();
     function Config($routeProvider, $locationProvider, $logProvider) {
         $routeProvider.
             otherwise({redirectTo: '/'});
-        $locationProvider.html5Mode(true);
-        ///$logProvider.debugEnable(true);
-        
+        $locationProvider.html5Mode(false);
+        //$logProvider.debugEnable(true);
+
     }
 
 })();
 
-angular
-    .module('ngFit.about', ['ngRoute'])
+;(function() {
+    'use strict';
+    angular
+        .module('ngFit.about', ['ngRoute'])
+        .config(['$routeProvider', config])
+        .controller('AboutCtrl', AboutCtrl);
 
-    .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider
-        .when('/about',{
-            templateUrl:'app/about/about.html',
-            controller: 'AboutCtrl'
-        });
-}])
+    AboutCtrl.$inject = ['$scope', '$rootScope', '$log'];
 
-.controller('AboutCtrl', ['$scope', function ($scope) {
-    $scope.title = "This is scope title About";
-}])
+    function AboutCtrl($scope, $rootScope, $log){
+        var vm = this;
+        $rootScope.curPath = 'about';
+    }
 
-angular.module('ngFit.contact', ['ngRoute'])
+    function config($routeProvider) {
+        $routeProvider
+            .when('/about', {
+                templateUrl: 'app/about/about.html',
+                controller: 'AboutCtrl',
+                controllerAs: 'vm'
+            });
+    }
 
-.config(['$routeProvider', function ($routeProvider) {
-    $routeProvider
-        .when('/contact',{
-        templateUrl:'app/contact/contact.html',
-        controller: 'ContactCtrl'
-    });
-}])
 
-.controller('ContactCtrl', ['$scope', function ($scope) {
-    $scope.title = "This is scope title Contact";
-}])
+})();
+;(function(){
+    "use strict";
+
+    angular
+        .module('ngFit.contact', ['ngRoute'])
+        .config(['$routeProvider', config])
+        .controller('ContactCtrl', ContactCtrl);
+
+    ContactCtrl.$inject = ['$scope', '$rootScope', '$log'];
+    
+    function ContactCtrl($scope, $rootScope, $log){
+        var vm = this;
+        $rootScope.curPath = 'contact';
+    }
+
+    function config($routeProvider) {
+            $routeProvider
+                .when('/contact', {
+                    templateUrl: 'app/contact/contact.html',
+                    controller: 'ContactCtrl',
+                    controllerAs: 'vm'
+                });
+    }
+})();
 (function(){
    "use strict";
 
@@ -79,21 +100,30 @@ function MainCtrl($scope, $rootScope, $log){
     };
 
     $log.debug('MainCtrl finish');
-};
+}
 
 configMain.$inject = ['$routeProvider'];
 
-function configMain($routeProvider) {
+function configMain($routeProvider){
     $routeProvider.
         when('/', {
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl',
         controllerAs: 'vm'
     });
-};
+}
 
-})
-angular.module('ngFit.navbar', ['ngRoute'])
+})();
+;(function(){
+    "use strict";
+
+    angular
+        .module('ngFit.navbar', [
+                'ngRoute'
+        ]);
+})();
+
+
 
 //.config(['$routeProvider', function ($routeProvider) {
 //    SrouteProvider.when

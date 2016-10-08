@@ -1,14 +1,25 @@
-angular
-    .module('ngFit.about', ['ngRoute'])
+;(function() {
+    'use strict';
+    angular
+        .module('ngFit.about', ['ngRoute'])
+        .config(['$routeProvider', config])
+        .controller('AboutCtrl', AboutCtrl);
 
-    .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider
-        .when('/about',{
-            templateUrl:'app/about/about.html',
-            controller: 'AboutCtrl'
-        });
-}])
+    AboutCtrl.$inject = ['$scope', '$rootScope', '$log'];
 
-.controller('AboutCtrl', ['$scope', function ($scope) {
-    $scope.title = "This is scope title About";
-}])
+    function AboutCtrl($scope, $rootScope, $log){
+        var vm = this;
+        $rootScope.curPath = 'about';
+    }
+
+    function config($routeProvider) {
+        $routeProvider
+            .when('/about', {
+                templateUrl: 'app/about/about.html',
+                controller: 'AboutCtrl',
+                controllerAs: 'vm'
+            });
+    }
+
+
+})();

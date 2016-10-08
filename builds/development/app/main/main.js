@@ -24,17 +24,17 @@ function MainCtrl($scope, $rootScope, $log){
     };
 
     $log.debug('MainCtrl finish');
-};
+}
 
 configMain.$inject = ['$routeProvider'];
 
-function configMain($routeProvider) {
+function configMain($routeProvider){
     $routeProvider.
         when('/', {
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl',
         controllerAs: 'vm'
     });
-};
+}
 
-})
+})();

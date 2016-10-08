@@ -1,4 +1,13 @@
-angular.module('ngFit.navbar', ['ngRoute'])
+;(function(){
+    "use strict";
+
+    angular
+        .module('ngFit.navbar', [
+                'ngRoute'
+        ]);
+})();
+
+
 
 //.config(['$routeProvider', function ($routeProvider) {
 //    SrouteProvider.when
