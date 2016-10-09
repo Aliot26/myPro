@@ -11,7 +11,7 @@ $.material.init();
             'ngFit.contact'
         ])
         .config(Config)
-        .value('some_val', {})
+        
 
     Config.$inject = ['$routeProvider', '$locationProvider', '$logProvider'];
 
@@ -33,12 +33,12 @@ $.material.init();
         .config(['$routeProvider', config])
         .controller('AboutCtrl', AboutCtrl);
 
-    AboutCtrl.$inject = ['$scope', '$rootScope', '$log', 'some_val'];
+    AboutCtrl.$inject = ['$scope', '$rootScope', '$log'];
 
-    function AboutCtrl($scope, $rootScope, $log, some_val){
+    function AboutCtrl($scope, $rootScope, $log){
         var vm = this;
         $rootScope.curPath = 'about';
-        some_val = 'about';
+        $log.log('about');
     }
 
     function config($routeProvider) {
@@ -60,12 +60,12 @@ $.material.init();
         .config(['$routeProvider', config])
         .controller('ContactCtrl', ContactCtrl);
 
-    ContactCtrl.$inject = ['$scope', '$rootScope', '$log', 'some_val'];
+    ContactCtrl.$inject = ['$scope', '$rootScope', '$log'];
     
-    function ContactCtrl($scope, $rootScope, $log, some_val){
+    function ContactCtrl($scope, $rootScope, $log){
         var vm = this;
         $rootScope.curPath = 'contact';
-        vm.some = some_val;
+        $log.log('contact');
     }
 
     function config($routeProvider) {
@@ -86,13 +86,14 @@ angular
     .constant('FIREBASE_URL', 'aaaaaaaaaaa')    
     .controller('MainCtrl', MainCtrl);
 
-MainCtrl.$inject = ['$scope', '$rootScope', '$log', 'FIREBASE_URL', 'some_val'];
+MainCtrl.$inject = ['$scope', '$rootScope', '$log', 'FIREBASE_URL'];
 
-function MainCtrl($scope, $rootScope, $log, FIREBASE_URL, some_val){
+function MainCtrl($scope, $rootScope, $log, FIREBASE_URL){
     $log.debug('MainCtrl start');
 
     $log._first = 'First property';
-    $log.log($log);
+    $log.log('main');
+    
     var VM = this;
 
     $rootScope.curPath = 'main';

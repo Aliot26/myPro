@@ -9,7 +9,8 @@
 
     function AboutCtrl($scope, $rootScope, $log){
         var vm = this;
-        $rootScope.curPath = 'about';       
+        $rootScope.curPath = 'about';
+        $log.log('about');
     }
 
     function config($routeProvider) {

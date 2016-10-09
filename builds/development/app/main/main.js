@@ -13,7 +13,8 @@ function MainCtrl($scope, $rootScope, $log, FIREBASE_URL){
     $log.debug('MainCtrl start');
 
     $log._first = 'First property';
-    $log.log($log);
+    $log.log('main');
+    
     var VM = this;
 
     $rootScope.curPath = 'main';

@@ -11,7 +11,7 @@
     function ContactCtrl($scope, $rootScope, $log){
         var vm = this;
         $rootScope.curPath = 'contact';
-        
+        $log.log('contact');
     }
 
     function config($routeProvider) {
