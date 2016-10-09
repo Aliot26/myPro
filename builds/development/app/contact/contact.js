@@ -12,6 +12,7 @@
         var vm = this;
         $rootScope.curPath = 'contact';
         $log.log('contact');
+        $log._first = 'second property';
         $log.log($log);
     }
 
