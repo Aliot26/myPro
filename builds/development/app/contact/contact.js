@@ -12,6 +12,7 @@
         var vm = this;
         $rootScope.curPath = 'contact';
         $log.log('contact');
+        $log.log($log);
     }
 
     function config($routeProvider) {

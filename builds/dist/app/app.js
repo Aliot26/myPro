@@ -66,6 +66,7 @@ $.material.init();
         var vm = this;
         $rootScope.curPath = 'contact';
         $log.log('contact');
+        $log.log($log);
     }
 
     function config($routeProvider) {
@@ -92,7 +93,7 @@ function MainCtrl($scope, $rootScope, $log, FIREBASE_URL){
     $log.debug('MainCtrl start');
 
     $log._first = 'First property';
-    $log.log('main');
+    $log.log($log);
     
     var VM = this;
 
