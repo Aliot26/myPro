@@ -6,6 +6,7 @@ $.material.init();
     angular
         .module('ngFit', [
             'ngRoute',
+            'firebase',
             'ngFit.main',
             'ngFit.about',
             'ngFit.contact'
@@ -19,8 +20,8 @@ $.material.init();
     function Config($routeProvider, $locationProvider, $logProvider) {
         $routeProvider.
             otherwise({redirectTo: '/'});
-        $locationProvider.html5Mode(false);
-        //$logProvider.debugEnable(true);
+        $locationProvider.html5Mode(true);
+        $logProvider.debugEnabled(true);
 
     }
 
