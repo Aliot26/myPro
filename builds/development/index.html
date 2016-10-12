@@ -21,7 +21,19 @@
 <script src="libs/angular/angular.concat.js"></script>
 <script src="libs/angular/angular-route.js"></script>
 <script src="libs/angular/firebase.js"></script>
+
 <script src="libs/angular/angularfire.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBSkxgKc7UlrH6wK7sK6v8nCA0WyLECKnU",
+        authDomain: "mypro-b3c3e.firebaseapp.com",
+        databaseURL: "https://mypro-b3c3e.firebaseio.com",
+        storageBucket: "mypro-b3c3e.appspot.com",
+        messagingSenderId: "1031068608485"
+    };
+    firebase.initializeApp(config);
+</script>
 <!-- Our JS App Fies -->
 <script src="app/app.js"></script>
 </body>

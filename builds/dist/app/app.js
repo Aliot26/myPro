@@ -94,7 +94,7 @@ $.material.init();
 ///    Так value доступно только сервису, провайдеру недоступно. А вот constant доступен и тому и другому. Но константа не декорируется
 
 angular
-    .module('ngFit.main', ['ngRoute'])
+    .module('ngFit.main', ['ngRoute', 'firebase'])
     .config(configMain)
     .controller('MainCtrl', MainCtrl);
 
@@ -108,24 +108,16 @@ function MainCtrl($scope, $rootScope, $log, FIREBASE_URL, $firebaseObject){
 
     $rootScope.curPath = 'main';
 
-    var config = {
-        apiKey: "AIzaSyBSkxgKc7UlrH6wK7sK6v8nCA0WyLECKnU",
-        authDomain: "mypro-b3c3e.firebaseapp.com",
-        databaseURL: "https://mypro-b3c3e.firebaseio.com",
-        storageBucket: "mypro-b3c3e.appspot.com",
-        messagingSenderId: "1031068608485"
-    };
 
-    firebase.initializeApp(config);
 
     var rootRef = firebase.database().ref();
    
-    var ref = new Firebase(FIREBASE_URL);
-    var refObj = $firebaseObject(ref);
+    //var rootRef = new Firebase(FIREBASE_URL);
+   // var refObj = $firebaseObject(ref);
 
-    refObj.$loaded(function(){
-       VM.db = rootRef;
-    });
+    ///refObj.$loaded(function(){
+    ///   VM.db = rootRef;
+    ///});
 
     VM.title = 'This is hello\'s page';
     VM.name = 'Aliot';
