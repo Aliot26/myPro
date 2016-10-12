@@ -21,12 +21,24 @@ function MainCtrl($scope, $rootScope, $log, FIREBASE_URL, $firebaseObject){
     var VM = this;
 
     $rootScope.curPath = 'main';
+
+    var config = {
+        apiKey: "AIzaSyBSkxgKc7UlrH6wK7sK6v8nCA0WyLECKnU",
+        authDomain: "mypro-b3c3e.firebaseapp.com",
+        databaseURL: "https://mypro-b3c3e.firebaseio.com",
+        storageBucket: "mypro-b3c3e.appspot.com",
+        messagingSenderId: "1031068608485"
+    };
+
+    firebase.initializeApp(config);
+
+    var rootRef = firebase.database().ref();
    
-    var ref = new Firebase('https://mypro-b3c3e.firebaseio.com');
+    var ref = new Firebase(FIREBASE_URL);
     var refObj = $firebaseObject(ref);
 
     refObj.$loaded(function(){
-       vm.db = refObj;
+       VM.db = rootRef;
     });
 
     VM.title = 'This is hello\'s page';
