@@ -10,22 +10,25 @@
 angular
     .module('ngFit.main', ['ngRoute'])
     .config(configMain)
-    .constant('FIREBASE_URL', 'aaaaaaaaaaa')    
     .controller('MainCtrl', MainCtrl);
 
-MainCtrl.$inject = ['$scope', '$rootScope', '$log', 'FIREBASE_URL'];
+MainCtrl.$inject = ['$scope', '$rootScope', '$log', 'FIREBASE_URL', '$firebaseObject'];
 
-function MainCtrl($scope, $rootScope, $log, FIREBASE_URL){
+function MainCtrl($scope, $rootScope, $log, FIREBASE_URL, $firebaseObject){
     $log.debug('MainCtrl start');
 
     $log._first = 'First property';
-    $log.log($log);
-    
     var VM = this;
 
     $rootScope.curPath = 'main';
    
-    VM.url = FIREBASE_URL;
+    var ref = new Firebase('https://mypro-b3c3e.firebaseio.com');
+    var refObj = $firebaseObject(ref);
+
+    refObj.$loaded(function(){
+       vm.db = refObj;
+    });
+
     VM.title = 'This is hello\'s page';
     VM.name = 'Aliot';
     $scope.clickFunction = function(name){
@@ -35,9 +38,9 @@ function MainCtrl($scope, $rootScope, $log, FIREBASE_URL){
     $log.debug('MainCtrl finish');
 }
 
-configMain.$inject = ['$routeProvider', 'FIREBASE_URL'];
+configMain.$inject = ['$routeProvider'];
 
-function configMain($routeProvider, FIREBASE_URL){
+function configMain($routeProvider){
     $routeProvider.
         when('/', {
         templateUrl: 'app/main/main.html',

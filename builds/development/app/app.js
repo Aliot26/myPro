@@ -12,6 +12,7 @@ $.material.init();
             'ngFit.contact'
         ])
         .config(Config)
+        .constant('FIREBASE_URL', 'https://mypro-b3c3e.firebaseio.com');
         
 
     Config.$inject = ['$routeProvider', '$locationProvider', '$logProvider'];
@@ -20,7 +21,10 @@ $.material.init();
     function Config($routeProvider, $locationProvider, $logProvider) {
         $routeProvider.
             otherwise({redirectTo: '/'});
-        $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
         $logProvider.debugEnabled(true);
 
     }
