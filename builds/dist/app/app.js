@@ -108,16 +108,9 @@ function MainCtrl($scope, $rootScope, $log, FIREBASE_URL, $firebaseObject){
 
     $rootScope.curPath = 'main';
 
+    var ref = firebase.database();
+    //var refObj = $firebaseObject(FIREBASE_URL);
 
-
-    var rootRef = firebase.database().ref();
-   
-    //var rootRef = new Firebase(FIREBASE_URL);
-   // var refObj = $firebaseObject(ref);
-
-    ///refObj.$loaded(function(){
-    ///   VM.db = rootRef;
-    ///});
 
     VM.title = 'This is hello\'s page';
     VM.name = 'Aliot';
