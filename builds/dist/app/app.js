@@ -98,9 +98,9 @@ angular
     .config(configMain)
     .controller('MainCtrl', MainCtrl);
 
-MainCtrl.$inject = ['$scope', '$rootScope', '$log', 'FIREBASE_URL', '$firebaseObject'];
+MainCtrl.$inject = ['$scope', '$rootScope', '$log', 'FIREBASE_URL', '$firebaseObject', '$firebaseArray'];
 
-function MainCtrl($scope, $rootScope, $log, FIREBASE_URL, $firebaseObject){
+function MainCtrl($scope, $rootScope, $log, FIREBASE_URL, $firebaseObject, $firebaseArray){
     $log.debug('MainCtrl start');
 
     $log._first = 'First property';
@@ -108,9 +108,22 @@ function MainCtrl($scope, $rootScope, $log, FIREBASE_URL, $firebaseObject){
 
     $rootScope.curPath = 'main';
 
-    var ref = firebase.database();
-    //var refObj = $firebaseObject(FIREBASE_URL);
+    var ref = firebase.database().ref();
 
+    var refObj = $firebaseObject(ref);
+
+    refObj.$loaded(function(){
+        VM.dbObj = refObj;
+    });
+    console.log(refObj);
+
+    var refArr = $firebaseArray(ref);
+
+    refArr.$loaded(function(){
+        VM.dbArr = refArr;
+    });
+    console.log(refObj);
+    console.log(refArr);
 
     VM.title = 'This is hello\'s page';
     VM.name = 'Aliot';
