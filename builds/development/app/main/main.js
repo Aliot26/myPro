@@ -20,7 +20,7 @@ function MainCtrl($scope, $rootScope, $log, fitfire){
     $log._first = 'First property';
     var VM = this;
 
-    fitfire.getUsers().then(function(_data){
+    fitfire.getUsers(function(_data){
         VM.user = _data;
     });
 

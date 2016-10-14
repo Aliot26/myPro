@@ -50,10 +50,8 @@ $.material.init();
         var userRef = ref.child('user');
         var userArr = $firebaseArray(userRef);
 
-        this.getUsers = function(){
-            return userArr.$loaded(function(_data){
-                return _data;
-            })
+        this.getUsers = function(cb){
+            return userArr.$loaded(cb)
         };
         
 //$log.debug('rrrrrrrrrrr');
@@ -147,7 +145,7 @@ function MainCtrl($scope, $rootScope, $log, fitfire){
     $log._first = 'First property';
     var VM = this;
 
-    fitfire.getUsers().then(function(_data){
+    fitfire.getUsers(function(_data){
         VM.user = _data;
     });
 

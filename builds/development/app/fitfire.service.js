@@ -17,10 +17,8 @@
         var userRef = ref.child('user');
         var userArr = $firebaseArray(userRef);
 
-        this.getUsers = function(){
-            return userArr.$loaded(function(_data){
-                return _data;
-            })
+        this.getUsers = function(cb){
+            return userArr.$loaded(cb)
         };
         
 //$log.debug('rrrrrrrrrrr');
