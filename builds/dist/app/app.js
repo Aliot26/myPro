@@ -47,7 +47,7 @@ $.material.init();
         var refObj = $firebaseObject(ref);
         var refArr = $firebaseArray(ref);
 
-        var userRef = ref.child('user');
+        var userRef = ref.child('users');
         var userArr = $firebaseArray(userRef);
 
         this.getUsers = function(cb){
@@ -158,23 +158,27 @@ MainCtrl.$inject = ['$scope', '$rootScope', '$log', 'fitfire'];
 
 function MainCtrl($scope, $rootScope, $log, fitfire){
     $log.debug('MainCtrl start');
-
-    $log._first = 'First property';
-    var VM = this;
+    var vm = this;
 
     fitfire.getUsers(function(_data){
-        VM.user = _data;
+        vm.users = _data;
     });
 
-    VM.user = {
+    vm.user = {
         name : null,
         age : 0
-    }
-    VM.addUser = fitfire.addUser(VM.user);
+    };
+
+    //vm.addUser = fitfire.addUser(vm.user);
+
+    vm.addUser = function(){
+        fitfire.addUser(vm.user);
+    };
+
     $rootScope.curPath = 'main';
 
-    VM.title = 'This is hello\'s page';
-    VM.name = 'Aliot';
+    vm.title = 'This is hello\'s page';
+    vm.name = 'Aliot';
     $scope.clickFunction = function(name){
         alert('Hi, ' + name);
     };

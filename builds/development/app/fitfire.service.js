@@ -14,7 +14,7 @@
         var refObj = $firebaseObject(ref);
         var refArr = $firebaseArray(ref);
 
-        var userRef = ref.child('user');
+        var userRef = ref.child('users');
         var userArr = $firebaseArray(userRef);
 
         this.getUsers = function(cb){
