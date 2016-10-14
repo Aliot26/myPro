@@ -5,9 +5,9 @@
         .module('ngFit.fitfire.service', ['firebase'])
         .service('fitfire', fitfire);
     
-    fitfire.$inject = ['$log', 'FIREBASE_URL', '$firebaseObject', '$firebaseArray'];
+    fitfire.$inject = ['$log', 'FIREBASE_URL', '$firebaseObject', '$firebaseArray', '$q'];
     
-    function fitfire($log, FIREBASE_URL, $firebaseObject, $firebaseArray){
+    function fitfire($log, FIREBASE_URL, $firebaseObject, $firebaseArray, $q){
         var self = this;
 
         var ref = firebase.database().ref();
@@ -15,13 +15,27 @@
         var refArr = $firebaseArray(ref);
 
         var userRef = ref.child('user');
-        var userArr = $firebaseArray(userRef);
+        //var userArr = $firebaseArray(userRef);
 
-        this.getUsers = function(cb){
-            return userArr.$loaded(cb)
-        };
+        //this.getUsers = function(cb){
+        //    return userArr.$loaded(cb)
+        //};
         
-//$log.debug('rrrrrrrrrrr');
+        this.getUsers = function(cb){
+            var deferred = $q.defer();
+
+            var userArr = $firebaseArray(userRef);
+
+            userArr.$loaded()
+                .then(function(_data){
+                    deferred.resolve(_data);
+                })
+                .catch(function(error){
+                    deferred.reject(error);
+                });
+
+            return deferred.promise;
+        };
         
         refObj.$loaded(function(){
             self.dbObj = refObj;
