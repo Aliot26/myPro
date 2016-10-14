@@ -6,7 +6,7 @@ $.material.init();
     angular
         .module('ngFit', [
             'ngRoute',
-            'firebase',
+            'ngFit.fitfire.service',
             'ngFit.main',
             'ngFit.about',
             'ngFit.contact'

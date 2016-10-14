@@ -6,7 +6,7 @@ $.material.init();
     angular
         .module('ngFit', [
             'ngRoute',
-            'firebase',
+            'ngFit.fitfire.service',
             'ngFit.main',
             'ngFit.about',
             'ngFit.contact'
@@ -28,6 +28,47 @@ $.material.init();
         $logProvider.debugEnabled(true);
 
     }
+
+})();
+
+;(function(){
+    'use strict';
+
+    angular
+        .module('ngFit.fitfire.service', ['firebase'])
+        .service('fitfire', fitfire);
+    
+    fitfire.$inject = ['$log', 'FIREBASE_URL', '$firebaseObject', '$firebaseArray'];
+    
+    function fitfire($log, FIREBASE_URL, $firebaseObject, $firebaseArray){
+        var self = this;
+
+        var ref = firebase.database().ref();
+        var refObj = $firebaseObject(ref);
+        var refArr = $firebaseArray(ref);
+
+        var userRef = ref.child('user');
+        var userArr = $firebaseArray(userRef);
+
+        this.getUsers = function(){
+            return userArr.$loaded(function(_data){
+                return _data;
+            })
+        };
+        
+//$log.debug('rrrrrrrrrrr');
+        
+        refObj.$loaded(function(){
+            self.dbObj = refObj;
+        });        
+
+        refArr.$loaded(function(){
+            self.dbArr = refArr;
+        });
+        console.log(refObj);
+        console.log(refArr);
+    }
+
 
 })();
 
@@ -98,32 +139,19 @@ angular
     .config(configMain)
     .controller('MainCtrl', MainCtrl);
 
-MainCtrl.$inject = ['$scope', '$rootScope', '$log', 'FIREBASE_URL', '$firebaseObject', '$firebaseArray'];
+MainCtrl.$inject = ['$scope', '$rootScope', '$log', 'fitfire'];
 
-function MainCtrl($scope, $rootScope, $log, FIREBASE_URL, $firebaseObject, $firebaseArray){
+function MainCtrl($scope, $rootScope, $log, fitfire){
     $log.debug('MainCtrl start');
 
     $log._first = 'First property';
     var VM = this;
 
+    fitfire.getUsers().then(function(_data){
+        VM.user = _data;
+    });
+
     $rootScope.curPath = 'main';
-
-    var ref = firebase.database().ref();
-
-    var refObj = $firebaseObject(ref);
-
-    refObj.$loaded(function(){
-        VM.dbObj = refObj;
-    });
-    console.log(refObj);
-
-    var refArr = $firebaseArray(ref);
-
-    refArr.$loaded(function(){
-        VM.dbArr = refArr;
-    });
-    console.log(refObj);
-    console.log(refArr);
 
     VM.title = 'This is hello\'s page';
     VM.name = 'Aliot';
