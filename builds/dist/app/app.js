@@ -48,27 +48,27 @@ $.material.init();
         var refArr = $firebaseArray(ref);
 
         var userRef = ref.child('user');
-        //var userArr = $firebaseArray(userRef);
+        var userArr = $firebaseArray(userRef);
 
-        //this.getUsers = function(cb){
-        //    return userArr.$loaded(cb)
-        //};
-        
         this.getUsers = function(cb){
-            var deferred = $q.defer();
-
-            var userArr = $firebaseArray(userRef);
-
-            userArr.$loaded()
-                .then(function(_data){
-                    deferred.resolve(_data);
-                })
-                .catch(function(error){
-                    deferred.reject(error);
-                });
-
-            return deferred.promise;
+            return userArr.$loaded(cb)
         };
+        
+        //this.getUsers = function(cb){
+        //    var deferred = $q.defer();
+//
+        //    var userArr = $firebaseArray(userRef);
+//
+        //    userArr.$loaded()
+        //        .then(function(_data){
+        //            deferred.resolve(_data);
+        //        })
+        //        .catch(function(error){
+        //            deferred.reject(error);
+        //        });
+//
+        //    return deferred.promise;
+        //};
         
         refObj.$loaded(function(){
             self.dbObj = refObj;
@@ -77,7 +77,10 @@ $.material.init();
         refArr.$loaded(function(){
             self.dbArr = refArr;
         });
-        console.log(refObj);
+
+        this.addUser = function(_user){
+            userRef.push(_user);
+        }
         console.log(refArr);
     }
 
@@ -163,6 +166,11 @@ function MainCtrl($scope, $rootScope, $log, fitfire){
         VM.user = _data;
     });
 
+    VM.user = {
+        name : null,
+        age : 0
+    }
+    VM.addUser = fitfire.addUser(VM.user);
     $rootScope.curPath = 'main';
 
     VM.title = 'This is hello\'s page';

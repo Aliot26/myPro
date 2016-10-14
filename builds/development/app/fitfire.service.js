@@ -15,27 +15,27 @@
         var refArr = $firebaseArray(ref);
 
         var userRef = ref.child('user');
-        //var userArr = $firebaseArray(userRef);
+        var userArr = $firebaseArray(userRef);
 
-        //this.getUsers = function(cb){
-        //    return userArr.$loaded(cb)
-        //};
-        
         this.getUsers = function(cb){
-            var deferred = $q.defer();
-
-            var userArr = $firebaseArray(userRef);
-
-            userArr.$loaded()
-                .then(function(_data){
-                    deferred.resolve(_data);
-                })
-                .catch(function(error){
-                    deferred.reject(error);
-                });
-
-            return deferred.promise;
+            return userArr.$loaded(cb)
         };
+        
+        //this.getUsers = function(cb){
+        //    var deferred = $q.defer();
+//
+        //    var userArr = $firebaseArray(userRef);
+//
+        //    userArr.$loaded()
+        //        .then(function(_data){
+        //            deferred.resolve(_data);
+        //        })
+        //        .catch(function(error){
+        //            deferred.reject(error);
+        //        });
+//
+        //    return deferred.promise;
+        //};
         
         refObj.$loaded(function(){
             self.dbObj = refObj;
@@ -44,7 +44,10 @@
         refArr.$loaded(function(){
             self.dbArr = refArr;
         });
-        console.log(refObj);
+
+        this.addUser = function(_user){
+            userRef.push(_user);
+        }
         console.log(refArr);
     }
 

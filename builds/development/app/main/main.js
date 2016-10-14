@@ -24,6 +24,11 @@ function MainCtrl($scope, $rootScope, $log, fitfire){
         VM.user = _data;
     });
 
+    VM.user = {
+        name : null,
+        age : 0
+    }
+    VM.addUser = fitfire.addUser(VM.user);
     $rootScope.curPath = 'main';
 
     VM.title = 'This is hello\'s page';
