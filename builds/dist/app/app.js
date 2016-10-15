@@ -181,6 +181,9 @@ function MainCtrl($scope, $rootScope, $log, fitfire){
         fitfire.addUser(vm.user);
     };
 
+    vm.setEdit = function(_user){
+        vm.user = _user;
+    };
     $rootScope.curPath = 'main';
 
     vm.title = 'This is hello\'s page';
