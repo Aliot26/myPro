@@ -81,7 +81,7 @@ $.material.init();
         this.addUser = function(_user){
             var usersLength = $firebaseObject(ref.child('options').child('usersLength'));
             usersLength.$loaded(function(){
-                var uLength = usersLength.$value++;
+                var uLength = ++usersLength.$value;
                 usersLength.$save();
                 userRef.child(uLength).set(_user);
             })
