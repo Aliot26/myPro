@@ -22,28 +22,35 @@ function MainCtrl($scope, $rootScope, $log, fitfire){
         vm.users = _data;
     });
 
-    vm.user = {
-        name : null,
-        age : 0
-    };
+    vm.user = null;
 
     //vm.addUser = fitfire.addUser(vm.user);
 
     vm.addUser = function(){
-        fitfire.addUser(vm.user);
+        fitfire.addUser(vm.user).then(function(){
+            vm.resetEdit();
+        });
     };
 
     vm.setEdit = function(_user){
         vm.user = _user;
     };
 
+    vm.resetEdit = function(){
+        vm.user = {
+            name : null,
+            age : 0
+        };
+    };
+
     vm.updateUser = function(){
         fitfire.updateUser(vm.user).then(function(){
-            vm.user = {
-                name : null,
-                age : 0
-            };
+            vm.cleanEdit();
         });
+    };
+
+    vm.cleanEdit = function(){
+        vm.user = null;
     };
     $rootScope.curPath = 'main';
 

@@ -1,13 +1,15 @@
 <h1>{{vm.title}}</h1>
 <p>My name is {{vm.name}}</p>
 <p>
-    <button class="btn btn-info" ng-click="clickFunction(vm.name)">Say Hello to me</button>
+    <button class="btn btn-raised btn-info" ng-click="clickFunction(vm.name)">Say Hello to me</button>
 </p>
-<form name="newUser">
+<button class="btn btn-raised btn-primary" ng-click="vm.resetEdit()">Add new user</button>
+<form name="newUser" ng-show="vm.user">
     <input class="form-control" type="text" ng-model="vm.user.name">
     <input class="form-control" type="number" ng-model="vm.user.age">
-    <button class="btn btn-primary" ng-hide="vm.user.$id" ng-click="vm.addUser()">Add user</button>
-    <button class="btn btn-primary" ng-show="vm.user.$id" ng-click="vm.updateUser()">Save</button>
+    <button class="btn btn-raised btn-primary" ng-hide="vm.user.$id" ng-click="vm.addUser()">Add user</button>
+    <button class="btn btn-raised btn-success" ng-show="vm.user.$id" ng-click="vm.updateUser()">Save</button>
+    <button class="btn btn-raised btn-danger" ng-show="vm.user.$id" ng-click="vm.cleanEdit()">Cancel</button>
 </form>
 <table class="table table-hover">
     <tbody>
