@@ -84,10 +84,14 @@ $.material.init();
                 var uLength = ++usersLength.$value;
                 usersLength.$save();
                 userRef.child(uLength).set(_user);
-            })
+            });
+        };
 
-        }
-        console.log(refArr);
+        this.updateUser = function(_user){
+            return userArr.$save(_user);
+        };
+
+        $log.debug(refArr);
     }
 
 
@@ -183,6 +187,15 @@ function MainCtrl($scope, $rootScope, $log, fitfire){
 
     vm.setEdit = function(_user){
         vm.user = _user;
+    };
+
+    vm.updateUser = function(){
+        fitfire.updateUser(vm.user).then(function(){
+            vm.user = {
+                name : null,
+                age : 0
+            };
+        });
     };
     $rootScope.curPath = 'main';
 

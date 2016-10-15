@@ -51,10 +51,14 @@
                 var uLength = ++usersLength.$value;
                 usersLength.$save();
                 userRef.child(uLength).set(_user);
-            })
+            });
+        };
 
-        }
-        console.log(refArr);
+        this.updateUser = function(_user){
+            return userArr.$save(_user);
+        };
+
+        $log.debug(refArr);
     }
 
 
