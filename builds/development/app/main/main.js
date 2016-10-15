@@ -27,8 +27,8 @@ function MainCtrl($scope, $rootScope, $log, fitfire){
     //vm.addUser = fitfire.addUser(vm.user);
 
     vm.addUser = function(){
-        fitfire.addUser(vm.user).then(function(){
-            vm.resetEdit();
+        fitfire.addUser(vm.user, function(){
+            vm.closeEdit();
         });
     };
 
@@ -45,11 +45,11 @@ function MainCtrl($scope, $rootScope, $log, fitfire){
 
     vm.updateUser = function(){
         fitfire.updateUser(vm.user).then(function(){
-            vm.cleanEdit();
+            vm.closeEdit();
         });
     };
 
-    vm.cleanEdit = function(){
+    vm.closeEdit = function (){
         vm.user = null;
     };
     $rootScope.curPath = 'main';
