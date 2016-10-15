@@ -79,7 +79,13 @@ $.material.init();
         });
 
         this.addUser = function(_user){
-            userRef.push(_user);
+            var usersLength = $firebaseObject(ref.child('options').child('usersLength'));
+            usersLength.$loaded(function(){
+                var uLength = usersLength.$value++;
+                usersLength.$save();
+                userRef.child(uLength).set(_user);
+            })
+
         }
         console.log(refArr);
     }
