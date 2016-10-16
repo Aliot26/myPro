@@ -18,18 +18,19 @@ function MainCtrl($scope, $rootScope, $log, fitfire){
     $log.debug('MainCtrl start');
     var vm = this;
 
+    $rootScope.curPath = 'main';
+
+    vm.user = null;
+    vm.title = 'This is hello\'s page';
+    vm.name = 'Aliot';
+
     fitfire.getUsers(function(_data){
         vm.users = _data;
     });
 
-    vm.user = null;
-
-    //vm.addUser = fitfire.addUser(vm.user);
-
     vm.addUser = function(){
-        fitfire.addUser(vm.user, function(){
-            vm.closeEdit();
-        });
+        fitfire.addUser(vm.user);
+        vm.resetEdit();
     };
 
     vm.setEdit = function(_user){
@@ -52,10 +53,15 @@ function MainCtrl($scope, $rootScope, $log, fitfire){
     vm.closeEdit = function (){
         vm.user = null;
     };
-    $rootScope.curPath = 'main';
 
-    vm.title = 'This is hello\'s page';
-    vm.name = 'Aliot';
+    vm.deleteUser = function(){
+        if(confirm("Really delete user?")){
+            fitfire.deleteUser(vm.user).then(function(){
+                vm.closeEdit()
+            });
+        };
+    };
+
     $scope.clickFunction = function(name){
         alert('Hi, ' + name);
     };

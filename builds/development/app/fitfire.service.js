@@ -58,6 +58,10 @@
             return userArr.$save(_user);
         };
 
+        this.deleteUser = function(_user){
+            return userArr.$remove(_user);
+        };
+
         $log.debug(refArr);
     }
 
