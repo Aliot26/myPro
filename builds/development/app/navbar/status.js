@@ -5,6 +5,7 @@
         .module('ngFit.status', [
                 'ngRoute'
         ])
+        .constant('SERVER_URL', value)
         .controller('AuthCtrl', AuthCtrl)
         .factory('Auth', AuthFactory);
 
@@ -18,14 +19,15 @@
 
             vm.login = function(){
                 $log.debug('Login!');
+                auth.login(vm.credentials.username, vm.credentials.password);
             }
         }
 
-        function AuthFactory($http){
+        function AuthFactory($http, SERVER_URL){
             var auth = {};
 
             auth.login = function(_username, _password){
-                
+                var auth_url = SERVER_URL + 'auth?login';
             }
 
             return auth;
