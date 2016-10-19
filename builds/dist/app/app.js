@@ -112,7 +112,9 @@ $.material.init();
 ///
 /////factory style, more involved but more sophisticated
 ///myApp.factory('helloWorldFromFactory', function() {
-///    return {
+///         ///private
+///     что-нить
+///    return { // здесь уже все public
 ///        sayHello: function() {
 ///            return "Hello, World!"
 ///        }
@@ -138,7 +140,7 @@ $.material.init();
 ///    };
 ///});
 ///
-/////hey, we can configure a provider!
+/////hey, we can configure a provider!  ///через config мы можем обратиться к приватной части провайдера(та которая НЕ $get)
 ///myApp.config(function(helloWorldProvider){
 ///    helloWorldProvider.setName('World');
 ///});
