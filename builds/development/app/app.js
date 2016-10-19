@@ -6,6 +6,7 @@ $.material.init();
     angular
         .module('ngFit', [
             'ngRoute',
+            'ngCookies',
             'ngFit.fitfire.service',
             'ngFit.main',
             'ngFit.about',

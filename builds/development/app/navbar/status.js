@@ -5,7 +5,7 @@
         .module('ngFit.status', [
                 'ngRoute'
         ])
-        .constant('SERVER_URL', value)
+        .constant('SERVER_URL', )
         .controller('AuthCtrl', AuthCtrl)
         .factory('Auth', AuthFactory);
 

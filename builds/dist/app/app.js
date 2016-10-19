@@ -6,6 +6,7 @@ $.material.init();
     angular
         .module('ngFit', [
             'ngRoute',
+            'ngCookies',
             'ngFit.fitfire.service',
             'ngFit.main',
             'ngFit.about',
@@ -302,7 +303,7 @@ function configMain($routeProvider){
         .module('ngFit.status', [
                 'ngRoute'
         ])
-        .constant('SERVER_URL', value)
+        .constant('SERVER_URL', )
         .controller('AuthCtrl', AuthCtrl)
         .factory('Auth', AuthFactory);
 
