@@ -1,5 +1,6 @@
 ///var myApp = angular.module('myApp', []);
 ///
+///factory, service, value, constant — всего лишь синтаксический сахар для provider
 /////service style, probably the simplest one
 ///myApp.service('helloWorldFromService', function() {
 ///    this.sayHello = function() {

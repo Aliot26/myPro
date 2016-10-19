@@ -9,7 +9,8 @@ $.material.init();
             'ngFit.fitfire.service',
             'ngFit.main',
             'ngFit.about',
-            'ngFit.contact'
+            'ngFit.contact',
+            'ngFit.status'
         ])
         .config(Config)
         .constant('FIREBASE_URL', 'https://mypro-b3c3e.firebaseio.com');
@@ -103,6 +104,7 @@ $.material.init();
 
 ///var myApp = angular.module('myApp', []);
 ///
+///factory, service, value, constant — всего лишь синтаксический сахар для provider
 /////service style, probably the simplest one
 ///myApp.service('helloWorldFromService', function() {
 ///    this.sayHello = function() {
@@ -297,9 +299,34 @@ function configMain($routeProvider){
     "use strict";
 
     angular
-        .module('ngFit.navbar', [
+        .module('ngFit.status', [
                 'ngRoute'
-        ]);
+        ])
+        .controller('AuthCtrl', AuthCtrl)
+        .factory('Auth', AuthFactory);
+
+        function AuthCtrl($scope, $log){
+            var vm = this;
+
+            vm.credentials = {
+                username: null,
+                password: null
+            };
+
+            vm.login = function(){
+                $log.debug('Login!');
+            }
+        }
+
+        function AuthFactory($http){
+            var auth = {};
+
+            auth.login = function(_username, _password){
+                
+            }
+
+            return auth;
+        }
 })();
 
 

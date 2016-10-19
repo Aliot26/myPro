@@ -9,7 +9,8 @@ $.material.init();
             'ngFit.fitfire.service',
             'ngFit.main',
             'ngFit.about',
-            'ngFit.contact'
+            'ngFit.contact',
+            'ngFit.status'
         ])
         .config(Config)
         .constant('FIREBASE_URL', 'https://mypro-b3c3e.firebaseio.com');
