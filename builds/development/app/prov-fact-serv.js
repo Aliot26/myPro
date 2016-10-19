@@ -10,7 +10,7 @@
 /////factory style, more involved but more sophisticated
 ///myApp.factory('helloWorldFromFactory', function() {
 ///         ///private
-///     что-нить
+///     что-нить (к этим переменным мы никогда не достучимся(не так как в провайдере, где можно переменную подменить на этапе конфига))
 ///    return { // здесь уже все public
 ///        sayHello: function() {
 ///            return "Hello, World!"
