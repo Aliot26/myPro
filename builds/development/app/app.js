@@ -8,6 +8,7 @@ $.material.init();
             'ngRoute',
             'ngCookies',
             'ngFit.fitfire.service',
+            'Authentication',
             'ngFit.main',
             'ngFit.about',
             'ngFit.contact',
