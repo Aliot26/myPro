@@ -26,6 +26,9 @@
         function StatusCtrl($scope, $log, authentication) {
             var vm = this;
 
+            vm.getEmail = function () {
+                return authentication.getEmail();
+            }
             vm.getUsername = function(){
                 //return Auth.getUsername();
             }

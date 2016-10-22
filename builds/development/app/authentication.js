@@ -10,30 +10,46 @@
 
         var ref = firebase.database().ref();
 
-        function authHandle(error, authData) {
-            if(error){
-                console.log("login failed!", error);
-            }else{
-                console.log("Authenticated successfully", authData);
-            }
-        }
+        var auth = firebase.auth();
+
+
+        //function authHndl(error, authData) {
+        //    if(error){
+        //        console.log("login failed!", error);
+        //    }else{
+        //        console.log("Authenticated successfully", authData);
+        //    }
+        //}
+
         var authObj = {
 
             login:function(_user){
-                console.log(_user);
+                //console.log(_user);
 
-                //authHndl = typeof authHndl !== 'undefined' ? authHndl : authHandle;
-                firebase.auth().signInWithEmailAndPassword(_user.email, _user.password)
-                    .then(function (authData) {
-                        $log.debug('logget in!', authData);
+               // authHndl = typeof authHndl !== 'undefined' ? authHndl : authHndl;
+                auth.signInWithEmailAndPassword(_user.email, _user.password)
+                    .then(function () {
+                        $log.debug('logget in!');
                     })
                     .catch(function (error) {
                         $log.error('Auth error', error);
-                    })
+                    });
+
+                //auth.onAuthStateChanged(function(user) {
+                //    if (user) {
+                //        // User signed in!
+                //        var uid = user.uid;
+                //        var email = user.email;
+                //        console.log(uid);
+                //        console.log(email);
+                //    } else {
+                //        // User logged out
+                //    }
+                //});
             },/*login*/
 
             logout: function(){
-                ref.unauth();
+                auth.signOut();
             },/*logout*/
 
             signedIn: function () {
@@ -42,7 +58,22 @@
 
             getAuth: function(){
                 return ref.getAuth();
-            }/*getAuth*/
+            },/*getAuth*/
+
+            getEmail: function () {
+                auth.onAuthStateChanged(function(user) {
+                    if (user) {
+                        // User signed in!
+                        var uid = user.uid;
+                        var email = user.email;
+                        //console.log(uid);
+                        console.log(email);
+                    } else {
+                        // User logged out
+                    }
+
+                });//return email;
+            }
         };
 
         $rootScope.signedIn = function () {
