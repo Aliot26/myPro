@@ -6,13 +6,24 @@
     ])
     .factory('authentication', AuthenticationFactory);
 
-    function AuthenticationFactory($firebaseAuth, $rootScope, FIREBASE_URL) {
+    function AuthenticationFactory($firebaseAuth, $rootScope, FIREBASE_URL, $log) {
 
         var ref = firebase.database().ref();
 
+        function authHandle(error, authData) {
+            if(error){
+                console.log("login failed!", error);
+            }else{
+                console.log("Authenticated successfully", authData);
+            }
+        }
         var authObj = {
+
             login:function(_user){
-                ref.authWithPassword(_user)
+                console.log(_user);
+
+                //authHndl = typeof authHndl !== 'undefined' ? authHndl : authHandle;
+                firebase.auth().signInWithEmailAndPassword(_user.email, _user.password)
                     .then(function (authData) {
                         $log.debug('logget in!', authData);
                     })

@@ -42,13 +42,24 @@ $.material.init();
     ])
     .factory('authentication', AuthenticationFactory);
 
-    function AuthenticationFactory($firebaseAuth, $rootScope, FIREBASE_URL) {
+    function AuthenticationFactory($firebaseAuth, $rootScope, FIREBASE_URL, $log) {
 
         var ref = firebase.database().ref();
 
+        function authHandle(error, authData) {
+            if(error){
+                console.log("login failed!", error);
+            }else{
+                console.log("Authenticated successfully", authData);
+            }
+        }
         var authObj = {
+
             login:function(_user){
-                ref.authWithPassword(_user)
+                console.log(_user);
+
+                //authHndl = typeof authHndl !== 'undefined' ? authHndl : authHandle;
+                firebase.auth().signInWithEmailAndPassword(_user.email, _user.password)
                     .then(function (authData) {
                         $log.debug('logget in!', authData);
                     })
@@ -348,9 +359,10 @@ function configMain($routeProvider){
         .module('ngFit.status', [
                 'ngRoute'
         ])
-        .constant('SERVER_URL', 'http://localhost:8000/server.js')
+        //.constant('SERVER_URL', 'http://localhost:8000/server.js')
         .controller('AuthCtrl', AuthCtrl)
-        .factory('Auth', AuthFactory);
+        .controller('StatusCtrl', StatusCtrl)
+        //.factory('Auth', AuthFactory);
 
         function AuthCtrl($scope, $log, authentication){
             var vm = this;
@@ -365,27 +377,32 @@ function configMain($routeProvider){
             }
         }
 
-        function AuthFactory($http, SERVER_URL, $log){
-            var auth = {};
+        function StatusCtrl($scope, $log, authentication) {
+            var vm = this;
 
-            auth.login = function(_username, _password){
-                var auth_url = SERVER_URL + 'auth?login=' + _username + '&password=' + _password;
-                return $http.get(auth_url)
-                    .then(function(response){
-                        $log.debug(response);
-                    })
+            vm.getUsername = function(){
+                //return Auth.getUsername();
             }
 
-            return auth;
+            vm.logout = function(){
+                authentication.logout();
+            }
         }
+        //function AuthFactory($http, SERVER_URL, $log){
+        //    var auth = {};
+//
+        //    auth.login = function(_username, _password){
+        //        var auth_url = SERVER_URL + 'auth?login=' + _username + '&password=' + _password;
+        //        return $http.get(auth_url)
+        //            .then(function(response){
+        //                $log.debug(response);
+        //            })
+        //    }
+//
+        //    return auth;
+        //}
 })();
 
 
 
-//.config(['$routeProvider', function ($routeProvider) {
-//    SrouteProvider.when
-//}])
 
-//.controller('NavbarCtrl',['$scope', function() {
-//
-//    }])
