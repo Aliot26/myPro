@@ -49,6 +49,8 @@ $.material.init();
         var auth = firebase.auth();
 
 
+
+
         //function authHndl(error, authData) {
         //    if(error){
         //        console.log("login failed!", error);
@@ -61,8 +63,8 @@ $.material.init();
 
             login:function(_user){
                 //console.log(_user);
-
                // authHndl = typeof authHndl !== 'undefined' ? authHndl : authHndl;
+
                 auth.signInWithEmailAndPassword(_user.email, _user.password)
                     .then(function () {
                         $log.debug('logget in!');
@@ -73,30 +75,56 @@ $.material.init();
             },/*login*/
 
             logout: function(){
-                auth.signOut();
+                auth.signOut().then(function() {
+                    // Sign-out successful.
+                    console.log('Sign-out successful.');
+                }, function(error) {
+                    // An error happened.
+                    console.log('An error happened.');
+                });
             },/*logout*/
 
             signedIn: function () {
-               return !!ref.getAuth();
-            },/*signedIn*/
-
-            getAuth: function(){
-                return ref.getAuth();
-            },/*getAuth*/
-
-            getEmail: function () {
                 auth.onAuthStateChanged(function(user) {
                     if (user) {
-                        // User signed in!
-                        var uid = user.uid;
-                        var email = user.email;
-                        //console.log(uid);
-                        console.log(email);
+                        console.log('User is signed in.');
+                        // User is signed in.
                     } else {
-                        // User logged out
+                        console.log('No user is signed in.');
+                        // No user is signed in.
                     }
+                });
+            },/*signedIn*/
 
-                });//return email;
+            //getAuth: function(){
+            //    ////console.log(auth.getAuth())
+            //    return auth.getAuth();
+            //},/*getAuth*/
+
+            getEmail: function () {
+                var user = firebase.auth().currentUser;
+                var email;
+                if(user != null){
+                    email = user.email;
+                    return email;
+                }else{
+                    return null;
+                }
+
+                //auth.onAuthStateChanged(function(user) {
+                //    if (user) {
+                //        // User signed in!
+                //        var uid = user.uid;
+                //        var email = user.email;
+//
+                //        console.log(user);
+                //        console.log(email);
+                //        console.log(uid);
+                //    } else {
+                //        // User logged out
+                //    }
+//
+                //});//return email;
             }
         };
 
