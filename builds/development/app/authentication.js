@@ -33,19 +33,7 @@
                     })
                     .catch(function (error) {
                         $log.error('Auth error', error);
-                    });
-
-                //auth.onAuthStateChanged(function(user) {
-                //    if (user) {
-                //        // User signed in!
-                //        var uid = user.uid;
-                //        var email = user.email;
-                //        console.log(uid);
-                //        console.log(email);
-                //    } else {
-                //        // User logged out
-                //    }
-                //});
+                    });                
             },/*login*/
 
             logout: function(){
@@ -78,7 +66,7 @@
 
         $rootScope.signedIn = function () {
             return authObj.signedIn();
-        }
+        };
 
         return authObj;
     }
