@@ -1,0 +1,30 @@
+<div id="registration-dialog" class="modal" ng-controller="AuthCtrl as ac">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Sing in</h4>
+            </div>
+            <div class="modal-body">
+                <form name="registrationForm" ng-submit="ac.register()">
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="ac.nUser.firstname" placeholder="Firstname">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="ac.nUser.lastname" placeholder="Lasttname">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" ng-model="ac.nUser.email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="ac.nUser.password" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-raised btn-primary">Register</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

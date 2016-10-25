@@ -78,6 +78,24 @@
 
             ngAuth: function(){
                 return auth;
+            },
+            
+            register: function (_user) {
+                 return auth.createUserWithEmailAndPassword(_user.email, _user.password)
+                    .then(function (firebaseUser) {
+                        $log.debug('User ' + _user.uid + ' created');
+                        var userRef = ref.child('users').child(firebaseUser.uid);
+                        userRef.set({
+                            firstname: _user.firstname,
+                            lastname: _user.lastname,
+                            //date: firebase.ServarValue.TIMESTAMP,
+                            email: _user.email
+                        });
+                       return auth.signInWithEmailAndPassword(_user.email, _user.password);
+                    })
+                    .catch(function (error) {
+                        $log.error('Not created', error);
+                    });
             }
         };
 

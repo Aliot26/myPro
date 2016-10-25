@@ -1,8 +1,8 @@
 ;(function() {
     'use strict';
     angular
-        .module('ngFit.about', ['ngRoute'])
-        .config(['$routeProvider', config])
+        .module('ngFit.about', ['ngRoute', 'ngFit.status'])
+        .config(['$routeProvider', configAbout])
         .controller('AboutCtrl', AboutCtrl);
 
     AboutCtrl.$inject = ['$scope', '$rootScope', '$log'];
@@ -13,17 +13,17 @@
         $log.log('about');
     }
 
-    function config($routeProvider) {
+    function configAbout($routeProvider) {
         $routeProvider
             .when('/about', {
                 templateUrl: 'app/about/about.html',
                 controller: 'AboutCtrl',
                 controllerAs: 'vm',
-                resolve: {
-                    'currentAuth': function (authentication) {
-                        return authentication.ngAuth().$requireSignIn();
-                    }
-                }
+                //resolve: {
+                //    'currentAuth': function (authentication) {
+                //        return authentication.ngAuth().$requireSignIn();
+                //    }
+                //}
             });
     }
 

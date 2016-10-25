@@ -17,6 +17,10 @@
                 email: null,
                 password: null
             };
+    
+            vm.register = function () {
+                authentication.register(vm.nUser);
+            };
 
             vm.login = function(){
                 authentication.login(vm.credentials);

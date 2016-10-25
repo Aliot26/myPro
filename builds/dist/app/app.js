@@ -114,6 +114,24 @@ $.material.init();
 
             ngAuth: function(){
                 return auth;
+            },
+            
+            register: function (_user) {
+                 return auth.createUserWithEmailAndPassword(_user.email, _user.password)
+                    .then(function (firebaseUser) {
+                        $log.debug('User ' + _user.uid + ' created');
+                        var userRef = ref.child('users').child(firebaseUser.uid);
+                        userRef.set({
+                            firstname: _user.firstname,
+                            lastname: _user.lastname,
+                            //date: firebase.ServarValue.TIMESTAMP,
+                            email: _user.email
+                        });
+                       return auth.signInWithEmailAndPassword(_user.email, _user.password);
+                    })
+                    .catch(function (error) {
+                        $log.error('Not created', error);
+                    });
             }
         };
 
@@ -255,8 +273,8 @@ $.material.init();
 ;(function() {
     'use strict';
     angular
-        .module('ngFit.about', ['ngRoute'])
-        .config(['$routeProvider', config])
+        .module('ngFit.about', ['ngRoute', 'ngFit.status'])
+        .config(['$routeProvider', configAbout])
         .controller('AboutCtrl', AboutCtrl);
 
     AboutCtrl.$inject = ['$scope', '$rootScope', '$log'];
@@ -267,17 +285,17 @@ $.material.init();
         $log.log('about');
     }
 
-    function config($routeProvider) {
+    function configAbout($routeProvider) {
         $routeProvider
             .when('/about', {
                 templateUrl: 'app/about/about.html',
                 controller: 'AboutCtrl',
                 controllerAs: 'vm',
-                resolve: {
-                    'currentAuth': function (authentication) {
-                        return authentication.ngAuth().$requireSignIn();
-                    }
-                }
+                //resolve: {
+                //    'currentAuth': function (authentication) {
+                //        return authentication.ngAuth().$requireSignIn();
+                //    }
+                //}
             });
     }
 
@@ -411,6 +429,10 @@ function configMain($routeProvider){
             vm.credentials = {
                 email: null,
                 password: null
+            };
+    
+            vm.register = function () {
+                authentication.register(vm.nUser);
             };
 
             vm.login = function(){
