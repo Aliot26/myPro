@@ -74,21 +74,10 @@
                 }else{
                     return null;
                 }
+            },
 
-                //auth.onAuthStateChanged(function(user) {
-                //    if (user) {
-                //        // User signed in!
-                //        var uid = user.uid;
-                //        var email = user.email;
-//
-                //        console.log(user);
-                //        console.log(email);
-                //        console.log(uid);
-                //    } else {
-                //        // User logged out
-                //    }
-//
-                //});//return email;
+            ngAuth: function(){
+                return auth;
             }
         };
 

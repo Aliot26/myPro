@@ -7,7 +7,7 @@
 
     AboutCtrl.$inject = ['$scope', '$rootScope', '$log'];
 
-    function AboutCtrl($scope, $rootScope, $log){
+    function AboutCtrl($scope, $rootScope, $log, authentication){
         var vm = this;
         $rootScope.curPath = 'about';
         $log.log('about');
@@ -18,7 +18,12 @@
             .when('/about', {
                 templateUrl: 'app/about/about.html',
                 controller: 'AboutCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    'currentAuth': function (authentication) {
+                        return authentication.ngAuth().$requireSignIn();
+                    }
+                }
             });
     }
 

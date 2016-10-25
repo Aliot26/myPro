@@ -110,21 +110,10 @@ $.material.init();
                 }else{
                     return null;
                 }
+            },
 
-                //auth.onAuthStateChanged(function(user) {
-                //    if (user) {
-                //        // User signed in!
-                //        var uid = user.uid;
-                //        var email = user.email;
-//
-                //        console.log(user);
-                //        console.log(email);
-                //        console.log(uid);
-                //    } else {
-                //        // User logged out
-                //    }
-//
-                //});//return email;
+            ngAuth: function(){
+                return auth;
             }
         };
 
@@ -272,7 +261,7 @@ $.material.init();
 
     AboutCtrl.$inject = ['$scope', '$rootScope', '$log'];
 
-    function AboutCtrl($scope, $rootScope, $log){
+    function AboutCtrl($scope, $rootScope, $log, authentication){
         var vm = this;
         $rootScope.curPath = 'about';
         $log.log('about');
@@ -283,7 +272,12 @@ $.material.init();
             .when('/about', {
                 templateUrl: 'app/about/about.html',
                 controller: 'AboutCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    'currentAuth': function (authentication) {
+                        return authentication.ngAuth().$requireSignIn();
+                    }
+                }
             });
     }
 
