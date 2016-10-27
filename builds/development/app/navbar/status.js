@@ -27,7 +27,7 @@
             }
         }
 
-        function StatusCtrl($scope, $log, authentication) {
+        function StatusCtrl($scope, $log, authentication, $rootScope) {
             var vm = this;
 
             vm.getEmail = function () {

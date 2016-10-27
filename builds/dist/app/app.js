@@ -46,27 +46,20 @@ $.material.init();
 
         var ref = firebase.database().ref();
 
-        function authDataCallback() {
-            var user = auth.currentUser;
-            var uid;
-            if(user != null){
-                uid = user.uid;
-                console.log(user);
-                var userref = ref.child('users').child(uid);
-                var nam = $firebaseObject(userref);
-                //var nameGuest = nam.firstname;
-                console.log(nam);
-                nam.$loaded().then(function () {
-                    $rootScope.currentUser = nam;
-                });
-            }else{
-                $rootScope.currentUser = null;
-            }
-        }
-
-
-
         var auth = firebase.auth();
+
+
+        
+        //auth.onAuthStateChanged(getUid);
+
+       ///auth.onAuthStateChanged(function(user) {
+       ///    if (user) {
+       ///        // User signed in!
+       ///        var uid = user.uid;
+       ///    } else {
+       ///        // User logged out
+       ///    }
+       ///});
 
         var authObj = {
 
@@ -92,16 +85,37 @@ $.material.init();
             },/*logout*/
 
             signedIn: function () {
-                auth.onAuthStateChanged(function(user) {
-                    if (user) {
+                auth.onAuthStateChanged(function(firebaseUser) {
+                    if (firebaseUser) {
                         console.log('User is signed in.');
-                        // User is signed in.
+                        return true;
                     } else {
                         console.log('No user is signed in.');
-                        // No user is signed in.
+                        return null;
                     }
                 });
             },/*signedIn*/
+
+            getUid:function (){
+            var user = auth.currentUser;
+            var uid= user.uid;
+            var userref = ref.child('users').child(uid);
+            var nam = $firebaseObject(userref);
+            if(user != null){
+                //uid = user.uid;
+                //console.log(user);
+
+
+
+                //console.log(nam);
+                nam.$loaded().then(function () {
+                    $rootScope.currentUser = nam;
+                    console.log(nam);
+                });
+            }else{
+                $rootScope.currentUser = null;
+            }
+        },
 
             //getAuth: function(){
             //    ////console.log(auth.getAuth())
@@ -447,7 +461,7 @@ function configMain($routeProvider){
             }
         }
 
-        function StatusCtrl($scope, $log, authentication) {
+        function StatusCtrl($scope, $log, authentication, $rootScope) {
             var vm = this;
 
             vm.getEmail = function () {
