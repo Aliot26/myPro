@@ -46,13 +46,27 @@ $.material.init();
 
         var ref = firebase.database().ref();
 
+        function authDataCallback() {
+            var user = auth.currentUser;
+            var uid;
+            if(user != null){
+                uid = user.uid;
+                console.log(user);
+                var userref = ref.child('users').child(uid);
+                var nam = $firebaseObject(userref);
+                //var nameGuest = nam.firstname;
+                console.log(nam);
+                nam.$loaded().then(function () {
+                    $rootScope.currentUser = nam;
+                });
+            }else{
+                $rootScope.currentUser = null;
+            }
+        }
+
+
+
         var auth = firebase.auth();
-
-
-
-
-
-
 
         var authObj = {
 
@@ -80,7 +94,7 @@ $.material.init();
             signedIn: function () {
                 auth.onAuthStateChanged(function(user) {
                     if (user) {
-                        console.log('User is signed in.' + user);
+                        console.log('User is signed in.');
                         // User is signed in.
                     } else {
                         console.log('No user is signed in.');
@@ -104,24 +118,6 @@ $.material.init();
                     return null;
                 }
             },
-
-            getUid: function () {
-                var user = auth.currentUser;
-                var uid;
-
-                if(user != null){
-                    uid = user.uid;
-                    console.log(uid);
-                    var userref = ref.child('users').child(uid);
-                    var nam = $firebaseObject(userref);
-                    console.log(nam);
-
-                    return uid;
-                }else{
-                    return null;
-                }
-            },
-
 
             ngAuth: function(){
                 return auth;
