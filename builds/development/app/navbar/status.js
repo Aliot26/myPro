@@ -32,28 +32,17 @@
 
             vm.getEmail = function () {
                 return authentication.getEmail();
-            }
-            vm.getUsername = function(){
-                //return Auth.getUsername();
-            }
+            };
+            
+            vm.getUid = function(){
+                return authentication.getUid();
+            };
 
             vm.logout = function(){
                 authentication.logout();
             }
         }
-        //function AuthFactory($http, SERVER_URL, $log){
-        //    var auth = {};
-//
-        //    auth.login = function(_username, _password){
-        //        var auth_url = SERVER_URL + 'auth?login=' + _username + '&password=' + _password;
-        //        return $http.get(auth_url)
-        //            .then(function(response){
-        //                $log.debug(response);
-        //            })
-        //    }
-//
-        //    return auth;
-        //}
+
 })();
 
 

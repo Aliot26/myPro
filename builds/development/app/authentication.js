@@ -6,7 +6,7 @@
     ])
     .factory('authentication', AuthenticationFactory);
 
-    function AuthenticationFactory($firebaseAuth, $rootScope, FIREBASE_URL, $log) {
+    function AuthenticationFactory($firebaseAuth, $rootScope, FIREBASE_URL, $log, $firebaseObject) {
 
         var ref = firebase.database().ref();
 
@@ -15,19 +15,12 @@
 
 
 
-        //function authHndl(error, authData) {
-        //    if(error){
-        //        console.log("login failed!", error);
-        //    }else{
-        //        console.log("Authenticated successfully", authData);
-        //    }
-        //}
+
+
 
         var authObj = {
 
             login:function(_user){
-                //console.log(_user);
-               // authHndl = typeof authHndl !== 'undefined' ? authHndl : authHndl;
 
                 auth.signInWithEmailAndPassword(_user.email, _user.password)
                     .then(function () {
@@ -51,7 +44,7 @@
             signedIn: function () {
                 auth.onAuthStateChanged(function(user) {
                     if (user) {
-                        console.log('User is signed in.');
+                        console.log('User is signed in.' + user);
                         // User is signed in.
                     } else {
                         console.log('No user is signed in.');
@@ -66,7 +59,7 @@
             //},/*getAuth*/
 
             getEmail: function () {
-                var user = firebase.auth().currentUser;
+                var user = auth.currentUser;
                 var email;
                 if(user != null){
                     email = user.email;
@@ -76,6 +69,24 @@
                 }
             },
 
+            getUid: function () {
+                var user = auth.currentUser;
+                var uid;
+
+                if(user != null){
+                    uid = user.uid;
+                    console.log(uid);
+                    var userref = ref.child('users').child(uid);
+                    var nam = $firebaseObject(userref);
+                    console.log(nam);
+
+                    return uid;
+                }else{
+                    return null;
+                }
+            },
+
+
             ngAuth: function(){
                 return auth;
             },
@@ -83,7 +94,7 @@
             register: function (_user) {
                  return auth.createUserWithEmailAndPassword(_user.email, _user.password)
                     .then(function (firebaseUser) {
-                        $log.debug('User ' + _user.uid + ' created');
+                        $log.debug('User ' + firebaseUser.uid + ' created');
                         var userRef = ref.child('users').child(firebaseUser.uid);
                         userRef.set({
                             firstname: _user.firstname,
