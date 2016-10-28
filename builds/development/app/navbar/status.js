@@ -35,7 +35,6 @@
             };
             
             vm.getUid = function(){
-                console.log($rootScope.currentUser);
                 return authentication.getUid;
             };
 

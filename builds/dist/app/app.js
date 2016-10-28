@@ -53,12 +53,9 @@ $.material.init();
             console.log(user, 'user');
             var uid= user.uid;
             var userRef = ref.child('users').child(uid);
-            //console.log(userRef, 'qqqqqqqqqqqqqqqqqqqq');
+
             var nam = $firebaseObject(userRef);
             if(user != null){
-                //uid = user.uid;
-                //console.log(user);
-                //console.log(nam);
                 nam.$loaded().then(function () {
                     $rootScope.currentUser = nam;
                     console.log(nam, 'doit!!');
@@ -108,7 +105,7 @@ $.material.init();
                 auth.onAuthStateChanged(function(firebaseUser) {
                     if (firebaseUser) {
                         console.log('User is signed in.');
-                        return firebaseUser;
+                        return null;
                     } else {
                         console.log('No user is signed in.');
                         return null;
@@ -473,7 +470,6 @@ function configMain($routeProvider){
             };
             
             vm.getUid = function(){
-                console.log($rootScope.currentUser);
                 return authentication.getUid;
             };
 
