@@ -35,11 +35,12 @@
         //        });
 //
         //    return deferred.promise;
-        //};
-        
+        //};            console.log('qaaaaaaa');
+
+
         refObj.$loaded(function(){
             self.dbObj = refObj;
-        });        
+        });
 
         refArr.$loaded(function(){
             self.dbArr = refArr;
@@ -62,7 +63,7 @@
             return userArr.$remove(_user);
         };
 
-        $log.debug(refArr);
+
     }
 
 

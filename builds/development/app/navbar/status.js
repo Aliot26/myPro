@@ -3,7 +3,7 @@
 
     angular
         .module('ngFit.status', [
-                'ngRoute'
+                'ngRoute','Authentication'
         ])
         //.constant('SERVER_URL', 'http://localhost:8000/server.js')
         .controller('AuthCtrl', AuthCtrl)
@@ -30,12 +30,13 @@
         function StatusCtrl($scope, $log, authentication, $rootScope) {
             var vm = this;
 
-            vm.getEmail = function () {
+            vm.getEmail = function () {                
                 return authentication.getEmail();
             };
             
             vm.getUid = function(){
-                return authentication.getUid();
+                console.log($rootScope.currentUser);
+                return authentication.getUid;
             };
 
             vm.logout = function(){

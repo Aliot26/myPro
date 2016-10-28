@@ -48,9 +48,28 @@ $.material.init();
 
         var auth = firebase.auth();
 
+        function getUid(){
+            var user = auth.currentUser;
+            console.log(user, 'user');
+            var uid= user.uid;
+            var userRef = ref.child('users').child(uid);
+            //console.log(userRef, 'qqqqqqqqqqqqqqqqqqqq');
+            var nam = $firebaseObject(userRef);
+            if(user != null){
+                //uid = user.uid;
+                //console.log(user);
+                //console.log(nam);
+                nam.$loaded().then(function () {
+                    $rootScope.currentUser = nam;
+                    console.log(nam, 'doit!!');
+                });
+            }else{
+                $rootScope.currentUser = null;
+            }
+        }
 
-        
-        //auth.onAuthStateChanged(getUid);
+
+        auth.onAuthStateChanged(getUid);
 
        ///auth.onAuthStateChanged(function(user) {
        ///    if (user) {
@@ -85,10 +104,11 @@ $.material.init();
             },/*logout*/
 
             signedIn: function () {
+
                 auth.onAuthStateChanged(function(firebaseUser) {
                     if (firebaseUser) {
                         console.log('User is signed in.');
-                        return true;
+                        return firebaseUser;
                     } else {
                         console.log('No user is signed in.');
                         return null;
@@ -96,26 +116,9 @@ $.material.init();
                 });
             },/*signedIn*/
 
-            getUid:function (){
-            var user = auth.currentUser;
-            var uid= user.uid;
-            var userref = ref.child('users').child(uid);
-            var nam = $firebaseObject(userref);
-            if(user != null){
-                //uid = user.uid;
-                //console.log(user);
 
 
 
-                //console.log(nam);
-                nam.$loaded().then(function () {
-                    $rootScope.currentUser = nam;
-                    console.log(nam);
-                });
-            }else{
-                $rootScope.currentUser = null;
-            }
-        },
 
             //getAuth: function(){
             //    ////console.log(auth.getAuth())
@@ -201,11 +204,12 @@ $.material.init();
         //        });
 //
         //    return deferred.promise;
-        //};
-        
+        //};            console.log('qaaaaaaa');
+
+
         refObj.$loaded(function(){
             self.dbObj = refObj;
-        });        
+        });
 
         refArr.$loaded(function(){
             self.dbArr = refArr;
@@ -228,7 +232,7 @@ $.material.init();
             return userArr.$remove(_user);
         };
 
-        $log.debug(refArr);
+
     }
 
 
@@ -437,7 +441,7 @@ function configMain($routeProvider){
 
     angular
         .module('ngFit.status', [
-                'ngRoute'
+                'ngRoute','Authentication'
         ])
         //.constant('SERVER_URL', 'http://localhost:8000/server.js')
         .controller('AuthCtrl', AuthCtrl)
@@ -464,12 +468,13 @@ function configMain($routeProvider){
         function StatusCtrl($scope, $log, authentication, $rootScope) {
             var vm = this;
 
-            vm.getEmail = function () {
+            vm.getEmail = function () {                
                 return authentication.getEmail();
             };
             
             vm.getUid = function(){
-                return authentication.getUid();
+                console.log($rootScope.currentUser);
+                return authentication.getUid;
             };
 
             vm.logout = function(){

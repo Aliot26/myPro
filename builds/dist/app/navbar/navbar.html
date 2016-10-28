@@ -20,7 +20,7 @@
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right" ng-controller="StatusCtrl as sc">
-                <li ng-show="sc.getUid()"><a href="">{{currentUser.firstname}}{{currentUser.lastname}}</a></li>
+                <li ng-show="sc.getUid"><a href="">{{currentUser.firstname}}{{currentUser.lastname}}</a></li>
                 <li ng-hide="sc.getUid()"><a href="" data-toggle="modal" data-target="#complete-dialog">Login</a></li>
                 <li ng-hide="sc.getUid()"><a href="" data-toggle="modal" data-target="#registration-dialog">Registration</a></li>
                 <li><a href="" ng-show="sc.getUid" ng-click="sc.logout()">Logout</a></li>

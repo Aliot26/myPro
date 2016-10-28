@@ -12,9 +12,28 @@
 
         var auth = firebase.auth();
 
+        function getUid(){
+            var user = auth.currentUser;
+            console.log(user, 'user');
+            var uid= user.uid;
+            var userRef = ref.child('users').child(uid);
+            //console.log(userRef, 'qqqqqqqqqqqqqqqqqqqq');
+            var nam = $firebaseObject(userRef);
+            if(user != null){
+                //uid = user.uid;
+                //console.log(user);
+                //console.log(nam);
+                nam.$loaded().then(function () {
+                    $rootScope.currentUser = nam;
+                    console.log(nam, 'doit!!');
+                });
+            }else{
+                $rootScope.currentUser = null;
+            }
+        }
 
-        
-        //auth.onAuthStateChanged(getUid);
+
+        auth.onAuthStateChanged(getUid);
 
        ///auth.onAuthStateChanged(function(user) {
        ///    if (user) {
@@ -49,10 +68,11 @@
             },/*logout*/
 
             signedIn: function () {
+
                 auth.onAuthStateChanged(function(firebaseUser) {
                     if (firebaseUser) {
                         console.log('User is signed in.');
-                        return true;
+                        return firebaseUser;
                     } else {
                         console.log('No user is signed in.');
                         return null;
@@ -60,26 +80,9 @@
                 });
             },/*signedIn*/
 
-            getUid:function (){
-            var user = auth.currentUser;
-            var uid= user.uid;
-            var userref = ref.child('users').child(uid);
-            var nam = $firebaseObject(userref);
-            if(user != null){
-                //uid = user.uid;
-                //console.log(user);
 
 
 
-                //console.log(nam);
-                nam.$loaded().then(function () {
-                    $rootScope.currentUser = nam;
-                    console.log(nam);
-                });
-            }else{
-                $rootScope.currentUser = null;
-            }
-        },
 
             //getAuth: function(){
             //    ////console.log(auth.getAuth())
