@@ -35,7 +35,9 @@
             };
             
             vm.getUid = function(){
-                return authentication.getUid;
+                if($rootScope.currentUser != null){
+                console.log($rootScope.currentUser, "aaaa");
+                return authentication.getUid;}
             };
 
             vm.logout = function(){
