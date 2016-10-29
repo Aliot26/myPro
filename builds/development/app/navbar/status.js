@@ -24,6 +24,10 @@
 
             vm.login = function(){
                 authentication.login(vm.credentials);
+            };
+            
+            vm.googleLogin = function () {
+                authentication.googleLogin();
             }
         }
 

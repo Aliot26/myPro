@@ -6,14 +6,15 @@
                 <h4 class="modal-title">Sing in</h4>
             </div>
             <div class="modal-body">
-                <form name="loginForm" ng-submit="ac.login()">
+                <form name="loginForm">
                     <div class="form-group">
                         <input type="email" class="form-control" ng-model="ac.credentials.email" placeholder="Username">
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" ng-model="ac.credentials.password" placeholder="Password">
                     </div>
-                    <button type="submit" class="btn btn-raised btn-primary">Loginn</button>
+                    <button type="submit" class="btn btn-raised btn-primary" ng-click="ac.login()">Login</button>
+                    <button type="submit" class="btn btn-raised btn-info" ng-click="ac.googleLogin()">Google login</button>
                 </form>
             </div>
             <div class="modal-footer">
