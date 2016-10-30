@@ -20,6 +20,8 @@
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right" ng-controller="StatusCtrl as sc">
+                <li ng-show="signedIn()"><a href=""><img ng-src="{{currentUser.photo}}" width="24" height="24" class="img-circle"/></a> </li>
+                <li ng-show="signedIn()"><a href="">{{currentUser.user}}</a></li>
                 <li ng-show="signedIn()"><a href="">{{currentUser.firstname}}&nbsp;{{currentUser.lastname}}</a></li>
                 <li ng-hide="signedIn()"><a href="" data-toggle="modal" data-target="#complete-dialog">Login</a></li>
                 <li ng-hide="signedIn()"><a href="" data-toggle="modal" data-target="#registration-dialog">Registration</a></li>

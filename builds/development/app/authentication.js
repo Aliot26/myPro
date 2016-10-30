@@ -13,7 +13,7 @@
         var auth = firebase.auth();
 
         var provider = new firebase.auth.GoogleAuthProvider();
-        console.log(provider, 'rrrr');
+
 
         function getUid(){
             var user = auth.currentUser;
@@ -59,11 +59,31 @@
 
             googleLogin: function () {
                 auth.signInWithPopup(provider).then(function(result) {
-                    // This gives you a Google Access Token. You can use it to access the Google API.
                     var token = result.credential.accessToken;
+                    var user = result.user;
+                    var name = result.user.displayName;
+                    var photo = result.user.photoURL;
+                    var id = result.user.uid;
+                    var userRef = ref.child('users').child(id);
+                    userRef.set({
+                        user: name,
+                        photo: photo,
+                        //date: firebase.ServarValue.TIMESTAMP,
+                        email: result.user.email
+                    });
+                    //var ss = provider.addScope('https://www.googleapis.com/auth/plus.login');
+                    //console.log(ss, 'ss');
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+
                     console.log(token, 'token');
                     // The signed-in user info.
-                    var user = result.user;
+
+                    console.log(user, 'user');
+                    console.log(name, 'name');
+
+                    console.log(photo, 'photo');
+
+                    console.log(id, 'id');
                     // ...
                 }).catch(function(error) {
                     // Handle Errors here.
