@@ -28,6 +28,10 @@
             
             vm.googleLogin = function () {
                 authentication.googleLogin();
+            };
+
+            vm.facebookLogin = function () {
+                authentication.facebookLogin();
             }
         }
 

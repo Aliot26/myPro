@@ -14,6 +14,8 @@
 
         var provider = new firebase.auth.GoogleAuthProvider();
 
+        var providerF = new firebase.auth.FacebookAuthProvider();
+
 
         function getUid(){
             var user = auth.currentUser;
@@ -57,6 +59,34 @@
                     });                
             },/*login*/
 
+            facebookLogin : function () {
+                auth.signInWithPopup(providerF).then(function(result) {
+                    var token = result.credential.accessToken;
+                    var user = result.user;
+                    var name = result.user.displayName;
+                    var photo = result.user.photoURL;
+                    var id = result.user.uid;
+                    //var credential = result.credential;
+                    //console.log(credential, 'credential');
+                    // get accessToken, idToken and provider
+                    var userRef = ref.child('users').child(id);
+                    userRef.set({
+                        user: name,
+                        photo: photo,
+                        email: result.user.email
+                    });
+                }).catch(function(error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // The email of the user's account used.
+                    var email = error.email;
+                    // The firebase.auth.AuthCredential type that was used.
+                    var credential = error.credential;
+                    // ...
+                });
+            },
+
             googleLogin: function () {
                 auth.signInWithPopup(provider).then(function(result) {
                     var token = result.credential.accessToken;
@@ -64,26 +94,19 @@
                     var name = result.user.displayName;
                     var photo = result.user.photoURL;
                     var id = result.user.uid;
+                    //var credential = result.credential;
+                    //console.log(credential, 'credential');
+                    // get accessToken, idToken and provider
                     var userRef = ref.child('users').child(id);
                     userRef.set({
                         user: name,
                         photo: photo,
-                        //date: firebase.ServarValue.TIMESTAMP,
                         email: result.user.email
                     });
                     //var ss = provider.addScope('https://www.googleapis.com/auth/plus.login');
                     //console.log(ss, 'ss');
                     // This gives you a Google Access Token. You can use it to access the Google API.
-
-                    console.log(token, 'token');
                     // The signed-in user info.
-
-                    console.log(user, 'user');
-                    console.log(name, 'name');
-
-                    console.log(photo, 'photo');
-
-                    console.log(id, 'id');
                     // ...
                 }).catch(function(error) {
                     // Handle Errors here.
