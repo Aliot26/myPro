@@ -30,6 +30,10 @@
                 authentication.googleLogin();
             };
 
+            vm.githubLogin = function () {
+                authentication.githubLogin();
+            };
+
             vm.facebookLogin = function () {
                 authentication.facebookLogin();
             }

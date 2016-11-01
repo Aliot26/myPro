@@ -52,6 +52,8 @@ $.material.init();
 
         var providerF = new firebase.auth.FacebookAuthProvider();
 
+        var providerG = new firebase.auth.GithubAuthProvider();
+
 
         function getUid(){
             var user = auth.currentUser;
@@ -94,6 +96,34 @@ $.material.init();
                         $log.error('Auth error', error);
                     });                
             },/*login*/
+
+            githubLogin : function () {
+                auth.signInWithPopup(providerG).then(function(result) {
+                    var token = result.credential.accessToken;
+                    var user = result.user;
+                    var name = result.user.displayName;
+                    var photo = result.user.photoURL;
+                    var id = result.user.uid;
+                    //var credential = result.credential;
+                    //console.log(credential, 'credential');
+                    // get accessToken, idToken and provider
+                    var userRef = ref.child('users').child(id);
+                    userRef.set({
+                        user: name,
+                        photo: photo,
+                        email: result.user.email
+                    });
+                }).catch(function(error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // The email of the user's account used.
+                    var email = error.email;
+                    // The firebase.auth.AuthCredential type that was used.
+                    var credential = error.credential;
+                    // ...
+                });
+            },
 
             facebookLogin : function () {
                 auth.signInWithPopup(providerF).then(function(result) {
@@ -523,6 +553,10 @@ function configMain($routeProvider){
             
             vm.googleLogin = function () {
                 authentication.googleLogin();
+            };
+
+            vm.githubLogin = function () {
+                authentication.githubLogin();
             };
 
             vm.facebookLogin = function () {
