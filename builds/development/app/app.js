@@ -24,10 +24,10 @@ $.material.init();
     function Config($routeProvider, $locationProvider, $logProvider) {
         $routeProvider.
             otherwise({redirectTo: '/'});
-        $locationProvider.html5Mode({
-            enabled: true,
-            requireBase: false
-        });
+        //$locationProvider.html5Mode({
+        //    enabled: true,
+        //    requireBase: false
+        //});
         $logProvider.debugEnabled(true);
 
     }
