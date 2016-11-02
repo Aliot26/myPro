@@ -96,6 +96,7 @@
                     var name = result.user.displayName;
                     var photo = result.user.photoURL;
                     var id = result.user.uid;
+                    console.log(user);
                     //var credential = result.credential;
                     //console.log(credential, 'credential');
                     // get accessToken, idToken and provider

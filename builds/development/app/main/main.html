@@ -15,8 +15,8 @@
 <table class="table table-hover">
     <tbody>
         <tr ng-repeat="user in vm.users" ng-click="vm.setEdit(user)">
-            <td>{{user.name}}</td>
-            <td>{{user.age}}</td>
+            <td>{{user.name}}{{user.user}}{{user.firstname}}</td>
+            <td>{{user.age}}{{user.email}}</td>
 
         </tr>
     </tbody>
