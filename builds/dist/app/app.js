@@ -388,7 +388,12 @@ $.material.init();
     angular
         .module('ngFit.about', ['ngRoute', 'ngFit.status'])
         .config(['$routeProvider', configAbout])
-        .controller('AboutCtrl', AboutCtrl);
+        .controller('AboutCtrl', AboutCtrl)
+        .filter('guest', function () {
+            return function (input) {
+                return input ? 'Customer' : 'Guest';
+            }
+    });
 
     AboutCtrl.$inject = ['$scope', '$rootScope', '$log'];
 
