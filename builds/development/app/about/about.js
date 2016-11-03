@@ -4,6 +4,17 @@
         .module('ngFit.about', ['ngRoute', 'ngFit.status'])
         .config(['$routeProvider', configAbout])
         .controller('AboutCtrl', AboutCtrl)
+        .filter('withAge', function () {
+            return function (input, limits) {
+                var result = [];
+                for(var i in input){
+                    if(input[i].age > limits.min && input[i].age < limits.max){
+                        result.push(input[i]);
+                    }
+                }
+                return result;
+            }
+        })
         .filter('guest', function () {
             return function (input) {
                 return input ? 'Customer' : 'Guest';
