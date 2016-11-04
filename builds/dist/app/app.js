@@ -1,5 +1,4 @@
-// initialize material design js
-$.material.init();
+window.onload = function(){$.material.init();};
 (function(){
     'use strict';
 
