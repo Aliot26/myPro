@@ -388,6 +388,19 @@ window.onload = function(){$.material.init();};
         .module('ngFit.about', ['ngRoute', 'ngFit.status'])
         .config(['$routeProvider', configAbout])
         .controller('AboutCtrl', AboutCtrl)
+        .filter('withEyes', function () {
+            return function (input, eyes) {
+                var result = [];
+                angular.forEach(input, function (item) {
+                    angular.forEach(eyes, function (selected, color) {
+                        if(selected && color == item.eyeColor){
+                            result.push(item);
+                        }
+                    })
+                })
+                return result;
+            }
+        })
         .filter('withAge', function () {
             return function (input, limits) {
                 var result = [];
