@@ -388,6 +388,7 @@ window.onload = function(){$.material.init();};
         .module('ngFit.about', ['ngRoute', 'ngFit.status'])
         .config(['$routeProvider', configAbout])
         .controller('AboutCtrl', AboutCtrl)
+        
         .filter('withEyes', function () {
             return function (input, eyes) {
                 var result = [];
@@ -397,7 +398,7 @@ window.onload = function(){$.material.init();};
                             result.push(item);
                         }
                     })
-                })
+                });
                 return result;
             }
         })
@@ -418,13 +419,13 @@ window.onload = function(){$.material.init();};
             }
     });
 
-    AboutCtrl.$inject = ['$scope', '$rootScope', '$log'];
+    //AboutCtrl.$inject = ['$scope', '$rootScope', '$log', '$filter'];
 
-    function AboutCtrl($scope, $rootScope, $log, authentication){
+    function AboutCtrl($scope, $rootScope, $log, authentication, $filter){
         var vm = this;
         $rootScope.curPath = 'about';
 
-        vm.people = [
+        vm.peopleBase = [
             {
                 "_id": "581a0e2cf2264aaec707269f",
                 "index": 0,
@@ -620,7 +621,12 @@ window.onload = function(){$.material.init();};
                     "last": "Warren"
                 }
             }
-        ]
+        ];
+
+        vm.people = $filter('withAge')(vm.peopleBase, {
+            min : 30,
+            max : 40
+        });
 
         $log.log('about');
     }
@@ -630,7 +636,7 @@ window.onload = function(){$.material.init();};
             .when('/about', {
                 templateUrl: 'app/about/about.html',
                 controller: 'AboutCtrl',
-                controllerAs: 'vm',
+                controllerAs: 'vm'
                 //resolve: {
                 //    'currentAuth': function (authentication) {
                 //        return authentication.ngAuth().$requireSignIn();
