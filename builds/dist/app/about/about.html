@@ -110,10 +110,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="success" ng-repeat="p in vm.people | orderBy : sortBy : reverse | withEyes : eyes | filter : search: strict ">
+        <tr class="success" ng-repeat="p in vm.peopleBase | orderBy : sortBy : reverse | withEyes : eyes | filter : search: strict ">
             <td>{{ $index + 1 }}</td>
             <td>{{ p.name.first }} {{ p.name.last }}</td>
-            <td>{{ p.balance }}</td>
+            <td>{{ p.balance | currency:"USD$"}}</td>
             <td>{{ p.eyeColor }}</td>
             <td>{{ p.age }}</td>
             <td>{{ p.isActive | guest}}</td>
