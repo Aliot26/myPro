@@ -659,7 +659,7 @@ window.onload = function(){$.material.init();};
         .directive('speed', speed)
         .directive('flight', flight);
 
-    ContactCtrl.$inject = ['$scope', '$rootScope', '$log', '$timeout'];
+    ContactCtrl.$inject = ['$scope ', '$rootScope', '$log', '$timeout'];
 
     function strength () {
         return{
@@ -706,7 +706,7 @@ window.onload = function(){$.material.init();};
                 };
             },
             link: function (scope, element) {
-                element.addClass('btn');
+                element.addClass('btn btn-raised btn-primary');
                 element.bind('mouseenter', function () {
                     console.log(scope.abilities);
                 })
