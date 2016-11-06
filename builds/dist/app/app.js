@@ -664,12 +664,17 @@ window.onload = function(){$.material.init();};
         //$log._first = 'second property';
         //$log.log($log);
 
-        vm.message = "";
+        vm.message = '';
 
         $scope.$watch('vm.message', function (newVal, oldVal) {
             console.log('$watch');
             console.log('newVal', newVal);
             console.log('oldVal', oldVal);
+        });
+
+        $scope.$on('init', function (event, data) {
+            console.log('contact init event', event, data);
+            vm.message = data;
         });
 
         $timeout(function () {
