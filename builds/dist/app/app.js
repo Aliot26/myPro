@@ -659,7 +659,7 @@ window.onload = function(){$.material.init();};
         .directive('speed', speed)
         .directive('flight', flight);
 
-    ContactCtrl.$inject = ['$scope ', '$rootScope', '$log', '$timeout'];
+    ContactCtrl.$inject = ['$scope', '$rootScope', '$log', '$timeout'];
 
     function strength () {
         return{

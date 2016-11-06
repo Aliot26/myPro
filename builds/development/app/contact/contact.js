@@ -10,7 +10,7 @@
         .directive('speed', speed)
         .directive('flight', flight);
 
-    ContactCtrl.$inject = ['$scope ', '$rootScope', '$log', '$timeout'];
+    ContactCtrl.$inject = ['$scope', '$rootScope', '$log', '$timeout'];
 
     function strength () {
         return{
