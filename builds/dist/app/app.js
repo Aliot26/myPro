@@ -653,10 +653,67 @@ window.onload = function(){$.material.init();};
     angular
         .module('ngFit.contact', ['ngRoute'])
         .config(['$routeProvider', config])
-        .controller('ContactCtrl', ContactCtrl);
+        .controller('ContactCtrl', ContactCtrl)
+        .directive('exampler', exampler)
+        .directive('strength', strength)
+        .directive('speed', speed)
+        .directive('flight', flight);
 
     ContactCtrl.$inject = ['$scope', '$rootScope', '$log', '$timeout'];
-    
+
+    function strength () {
+        return{
+            require: "exampler", 
+            link: function (scope, element, attrs, examplerCtrl) {
+                examplerCtrl.addStrength();
+            }
+        }
+    }
+
+    function speed () {
+        return{
+            require: "exampler",
+            link: function (scope, element, attrs, examplerCtrl) {
+                examplerCtrl.addSpeed();
+            }
+        }
+    }
+
+    function flight () {
+        return{
+            require: "exampler",
+            link: function (scope, element, attrs, examplerCtrl) {
+                examplerCtrl.addFlight();
+            }
+        }
+    }
+
+    function exampler(){
+        return{
+            restrict : 'A',
+            scope : {},
+            controller: function ($scope) {
+                $scope.abilities = [];
+
+                this.addStrength = function () {
+                    $scope.abilities.push('strength');
+                };
+                this.addSpeed = function () {
+                    $scope.abilities.push('speed');
+                };
+                this.addFlight = function () {
+                    $scope.abilities.push('flight');
+                };
+            },
+            link: function (scope, element) {
+                element.addClass('btn');
+                element.bind('mouseenter', function () {
+                    console.log(scope.abilities);
+                })
+            }
+        }
+    }
+
     function ContactCtrl($scope, $rootScope, $log, $timeout){
         var vm = this;
         $rootScope.curPath = 'contact';
