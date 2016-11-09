@@ -8,7 +8,8 @@
         .directive('exampler', exampler)
         .directive('strength', strength)
         .directive('speed', speed)
-        .directive('flight', flight);
+        .directive('flight', flight)
+        .directive('newDirective', newDirective);
 
     ContactCtrl.$inject = ['$scope', '$rootScope', '$log', '$timeout'];
 
@@ -35,6 +36,16 @@
             require: "exampler",
             link: function (scope, element, attrs, examplerCtrl) {
                 examplerCtrl.addFlight();
+            }
+        }
+    }
+
+    function newDirective () {
+        return{            
+            link: function (scope, element, attrs) {
+                element.bind('mouseenter', function () {
+                    element.addClass('panel');
+                })
             }
         }
     }
