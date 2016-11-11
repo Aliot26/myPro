@@ -658,7 +658,8 @@ window.onload = function(){$.material.init();};
         .directive('strength', strength)
         .directive('speed', speed)
         .directive('flight', flight)
-        .directive('newDirective', newDirective);
+        .directive('newDirective', newDirective)
+        .directive('leave', leave);
 
     ContactCtrl.$inject = ['$scope', '$rootScope', '$log', '$timeout'];
 
@@ -694,6 +695,16 @@ window.onload = function(){$.material.init();};
             link: function (scope, element, attrs) {
                 element.bind('mouseenter', function () {
                     element.addClass('panel');
+                })
+            }
+        }
+    }
+
+    function leave () {
+        return{
+            link: function (scope, element, attrs) {
+                element.bind('mouseleave', function () {
+                    element.removeClass('panel');
                 })
             }
         }
