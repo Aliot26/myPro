@@ -658,8 +658,10 @@ window.onload = function(){$.material.init();};
         .directive('strength', strength)
         .directive('speed', speed)
         .directive('flight', flight)
-        .directive('newDirective', newDirective)
-        .directive('leave', leave);
+        .directive('enter', enter)
+        .directive('leave', leave)
+        .directive('enter2', enter2)
+        .directive('leave2', leave2);
 
     ContactCtrl.$inject = ['$scope', '$rootScope', '$log', '$timeout'];
 
@@ -690,7 +692,7 @@ window.onload = function(){$.material.init();};
         }
     }
 
-    function newDirective () {
+    function enter () {
         return{            
             link: function (scope, element, attrs) {
                 element.bind('mouseenter', function () {
@@ -710,6 +712,25 @@ window.onload = function(){$.material.init();};
         }
     }
 
+    function enter2 () {
+        return{
+            link: function (scope, element, attrs) {
+                element.bind('mouseenter', function () {
+                    element.addClass(attrs.enter2);
+                })
+            }
+        }
+    }
+
+    function leave2 () {
+        return{
+            link: function (scope, element, attrs) {
+                element.bind('mouseleave', function () {
+                    element.removeClass(attrs.enter2);
+                })
+            }
+        }
+    }
     function exampler(){
         return{
             restrict : 'A',
