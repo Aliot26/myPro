@@ -85,7 +85,9 @@
     function exampler(){
         return{
             restrict : 'A',
+            transclude: true,
             scope : {},
+            template: '<h3>New directive</h3><ng-transclude></ng-transclude>',
             controller: function ($scope) {
                 $scope.abilities = [];
 
