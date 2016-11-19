@@ -1,0 +1,14 @@
+<div class="btn-group">
+    <a href="javascript:void(0)" class="btn btn-raised dropdown-toggle" data-toggle="dropdown">
+        Dropdown
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li ng-repeat="option in selectAwesome" class="option"><a href="javascript:void(0)">{{option}}</a></li>
+
+    </ul>
+</div>
+<select name="{{title}}" id="">
+    <option ng-repeat="option in selectAwesome" value="option">{{option}}</option>
+</select>
+<!--ng-transclude></ng-transclude-->

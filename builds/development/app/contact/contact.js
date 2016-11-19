@@ -12,9 +12,41 @@
         .directive('enter', enter)
         .directive('leave', leave)
         .directive('enter2', enter2)
-        .directive('leave2', leave2);
+        .directive('leave2', leave2)
+        .directive('selectAwesome', selectAwesome);
 
     ContactCtrl.$inject = ['$scope', '$rootScope', '$log', '$timeout'];
+
+    function selectAwesome () {
+        return{
+            restrict : 'A',
+            scope: {
+                selectAwesome: '=',
+                title: "@"
+            },
+            transclude: true,
+            templateUrl: 'app/contact/select.tpl.html',
+            controller: function ($scope) {
+                $scope.selectName = $scope.title;
+            },
+            link: function (scope, elem) {
+                console.log(elem);
+                elem.bind('mouseenter', function(){
+                    console.log('MouseEnter');
+                    elem.find('dropdown-menu').show();
+                });
+                elem.bind('mouseleave', function(){
+                    console.log('MouseLeave');
+                    elem.find('dropdown-menu').hide();
+                });
+                scope.$watch(elem.find('.option'), function () {
+                    elem.find('.option').bind('mouseenter', function () {
+                       console.log(angular.element(this).text());
+                    })
+                })
+            }
+        }
+    }
 
     function strength () {
         return{
@@ -86,7 +118,11 @@
         return{
             restrict : 'A',
             transclude: true,
-            scope : {},
+            scope : {
+                expression: '@',
+                function: '&',
+                dataBind: '='
+            },
             template: '<h3>New directive</h3><ng-transclude></ng-transclude>',
             controller: function ($scope) {
                 $scope.abilities = [];
@@ -112,6 +148,10 @@
 
     function ContactCtrl($scope, $rootScope, $log, $timeout){
         var vm = this;
+        $scope.selectAttr = ['Not Awesome', 'Little Awesome', 'I\'m Awesome'];
+        $scope.sendForm = function () {
+            
+        };
         $rootScope.curPath = 'contact';
         $log.log('contact');
         //$log._first = 'second property';
