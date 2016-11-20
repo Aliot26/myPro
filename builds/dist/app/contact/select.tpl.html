@@ -4,11 +4,12 @@
         <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-        <li ng-repeat="option in selectAwesome" class="option"><a href="javascript:void(0)">{{option}}</a></li>
+        <li ng-repeat="option in selectAwesome" ><a href="javascript:void(0) "class="option" id="{{option}}">{{option}}</a></li>
 
     </ul>
+    <select name="{{title}}" ng-model="model.id">
+        <option ng-repeat="option in selectAwesome" value="{{option}}">{{option}}</option>
+    </select>
 </div>
-<select name="{{title}}" id="">
-    <option ng-repeat="option in selectAwesome" value="option">{{option}}</option>
-</select>
+
 <!--ng-transclude></ng-transclude-->
