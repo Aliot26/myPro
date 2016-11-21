@@ -4,11 +4,11 @@
         <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-        <li ng-repeat="option in selectAwesome" ><a href="javascript:void(0) "class="option" id="{{option}}">{{option}}</a></li>
+        <li ng-repeat="option in selectAwesome" ><a href="javascript:void(0) "class="option" id="{{$index}}">{{option}}</a></li>
 
     </ul>
     <select name="{{title}}" ng-model="model.id">
-        <option ng-repeat="option in selectAwesome" value="{{option}}">{{option}}</option>
+        <option ng-repeat="option in selectAwesome" value="{{$index}}">{{option}}</option>
     </select>
 </div>
 

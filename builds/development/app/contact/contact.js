@@ -30,6 +30,7 @@
                 window.myScope = $scope;
                 $scope.selectName = $scope.title;
                 $scope.model = {id: 0};
+                $scope.dropdown = $scope.selectAwesome[0];
             },
             link: function (scope, elem) {
                 elem.bind('mouseenter', function () {
@@ -44,6 +45,7 @@
                     elem.find('.option').bind('click', function () {
                         var value = angular.element(this).attr('id');
                         scope.model.id = value;
+                        scope.dropdown = scope.selectAwesome[value];
                         scope.$apply();
                         console.log(value);
                     })
