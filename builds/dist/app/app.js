@@ -697,7 +697,7 @@ window.onload = function(){$.material.init();};
                         scope.model.id = value;
                         scope.dropdown = scope.selectAwesome[value];
                         scope.$apply();
-                        //elem.find('.dropdown-menu').hide(); если эту строку не комментить, то повторно не выберешь
+                        //elem.find('.dropdown-menu').hide(); //если эту строку не комментить, то повторно не выберешь
                         console.log(value);
                     })
                 })
