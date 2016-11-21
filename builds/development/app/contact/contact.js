@@ -27,8 +27,8 @@
             transclude: true,
             templateUrl: 'app/contact/select.tpl.html',
             controller: function ($scope) {
-                window.myScope = $scope;
-                $scope.selectName = $scope.title;
+                //window.myScope = $scope;
+                //$scope.selectName = $scope.title;
                 $scope.model = {id: 0};
                 $scope.dropdown = $scope.selectAwesome[0];
             },

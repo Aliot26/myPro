@@ -1,13 +1,13 @@
 <div class="btn-group">
     <a href="javascript:void(0)" class="btn btn-raised dropdown-toggle" data-toggle="dropdown">
-        Dropdown
+        {{dropdown}}
         <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
         <li ng-repeat="option in selectAwesome" ><a href="javascript:void(0) "class="option" id="{{$index}}">{{option}}</a></li>
 
     </ul>
-    <select name="{{title}}" ng-model="model.id">
+    <select name="{{title}}" ng-model="model.id" style="display: none">
         <option ng-repeat="option in selectAwesome" value="{{$index}}">{{option}}</option>
     </select>
 </div>
