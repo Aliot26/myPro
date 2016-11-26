@@ -2,4 +2,10 @@
 <h2>{{title}}</h2>
 
 <div>Text</div>
+<br>
 <button class="btn btn-raised btn-primary" ng-click="vm.sendSon()">Send Son</button>
+<br>
+<div infinite-scroll="vm.loadMore()">
+    <img ng-repeat="image in vm.images" ng-src="http://placehold.it/260x200&text={{image}}" class="img-thumbnail">
+
+</div>

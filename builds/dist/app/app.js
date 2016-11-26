@@ -1001,7 +1001,11 @@ function configMain($routeProvider){
 ;(function () {
     'use strict';
     angular
-        .module('ngFit.shop', ['ngRoute', 'ngFit.status'])
+        .module('ngFit.shop', [
+                        'ngRoute',
+                        'ngFit.status',
+                        'infinite-scroll'
+        ])
         .config(['$routeProvider', configShop])
         .controller('ShopCtrl', ShopCtrl)
         .factory('Son', function ($q) {
@@ -1081,7 +1085,7 @@ function configMain($routeProvider){
                     console.log('Son 2 say', msg)
                 }
             )
-            $q.all([son1, son2] //  А1 Позволяет обезопасить программный код, часть А2 не выполниться пока не сделана часть А1(принимает либо promise либо обычное значение, а возвращает всегда promise)
+            $q.all([son1, son2] //  А1 Позволяет обезопасить программный код, часть А2 не выполниться пока не сделана часть А1(принимает либо promise либо обычное значение, а возвращает всегда promise) Т.е. принимается массив функций, которые будет запущены параллельно
 
 
             ).then(function () { // A2
@@ -1089,7 +1093,13 @@ function configMain($routeProvider){
             })
         };
 
-        vm.sendDaughter
+        vm.images = [1,2,3,4,5,6,7,8];
+        vm.loadMore = function () {
+            var last = vm.images[vm.images.length - 1];
+            var i = 8;
+            while(i--)
+                vm.images.push(++last);
+        };
 
         $log.log('shop');
     }
