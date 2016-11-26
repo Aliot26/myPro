@@ -5,7 +5,10 @@
 <br>
 <button class="btn btn-raised btn-primary" ng-click="vm.sendSon()">Send Son</button>
 <br>
-<div infinite-scroll="vm.loadMore()">
-    <img ng-repeat="image in vm.images" ng-src="http://placehold.it/260x200&text={{image}}" class="img-thumbnail">
-
+<div class="list-group">
+    <ul infinite-scroll="vm.loadMore()" class="">
+        <li ng-repeat="u in vm.datas">
+            {{u.name}} - {{u.age}}
+        </li>
+    </ul>
 </div>

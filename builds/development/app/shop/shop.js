@@ -4,7 +4,8 @@
         .module('ngFit.shop', [
                         'ngRoute',
                         'ngFit.status',
-                        'infinite-scroll'
+                        'infinite-scroll',
+                        'ngFit.fitfire.service'
         ])
         .config(['$routeProvider', configShop])
         .controller('ShopCtrl', ShopCtrl)
@@ -57,7 +58,7 @@
 
     //ShopCtrl.$inject = ['$scope', '$rootScope', '$log'];
 
-    function ShopCtrl($scope, $rootScope, $log, Son, $q) {
+    function ShopCtrl($scope, $rootScope, $log, Son, $q, fitfire) {
         var vm = this;
         $rootScope.curPath = 'shop';
 
@@ -93,12 +94,17 @@
             })
         };
 
-        vm.images = [1,2,3,4,5,6,7,8];
+        vm.datas = [];
+        var last = 0;
+        fitfire.getData('' +last, 10).then(function (_data) {
+            vm.datas = _data;
+            last += 20;
+        });
         vm.loadMore = function () {
-            var last = vm.images[vm.images.length - 1];
-            var i = 8;
-            while(i--)
-                vm.images.push(++last);
+            fitfire.getData('' +last, 10).then(function (_data) {
+                vm.datas.concat(_data);
+                last += 20;
+            });
         };
 
         $log.log('shop');

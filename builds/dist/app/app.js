@@ -319,8 +319,15 @@ window.onload = function(){$.material.init();};
         this.deleteUser = function(_user){
             return userArr.$remove(_user);
         };
-
-
+        
+        this.getData = function (_st, _len) {
+            return $firebaseArray(
+                ref.child('data')
+                    .orderByKey()
+                    .startAt(_st)
+                    .limitToFirst(_len)
+            ).$loaded();
+        }
     }
 
 
@@ -1004,7 +1011,8 @@ function configMain($routeProvider){
         .module('ngFit.shop', [
                         'ngRoute',
                         'ngFit.status',
-                        'infinite-scroll'
+                        'infinite-scroll',
+                        'ngFit.fitfire.service'
         ])
         .config(['$routeProvider', configShop])
         .controller('ShopCtrl', ShopCtrl)
@@ -1057,7 +1065,7 @@ function configMain($routeProvider){
 
     //ShopCtrl.$inject = ['$scope', '$rootScope', '$log'];
 
-    function ShopCtrl($scope, $rootScope, $log, Son, $q) {
+    function ShopCtrl($scope, $rootScope, $log, Son, $q, fitfire) {
         var vm = this;
         $rootScope.curPath = 'shop';
 
@@ -1093,12 +1101,17 @@ function configMain($routeProvider){
             })
         };
 
-        vm.images = [1,2,3,4,5,6,7,8];
+        vm.datas = [];
+        var last = 0;
+        fitfire.getData('' +last, 10).then(function (_data) {
+            vm.datas = _data;
+            last += 20;
+        });
         vm.loadMore = function () {
-            var last = vm.images[vm.images.length - 1];
-            var i = 8;
-            while(i--)
-                vm.images.push(++last);
+            fitfire.getData('' +last, 10).then(function (_data) {
+                vm.datas.concat(_data);
+                last += 20;
+            });
         };
 
         $log.log('shop');

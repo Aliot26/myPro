@@ -62,8 +62,15 @@
         this.deleteUser = function(_user){
             return userArr.$remove(_user);
         };
-
-
+        
+        this.getData = function (_st, _len) {
+            return $firebaseArray(
+                ref.child('data')
+                    .orderByKey()
+                    .startAt(_st)
+                    .limitToFirst(_len)
+            ).$loaded();
+        }
     }
 
 
