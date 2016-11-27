@@ -1109,12 +1109,19 @@ function configMain($routeProvider){
         //});
         vm.loadMore = function () {
             fitfire.getData('' +last, 10).then(function (_data) {
-                for(var i in _data){
-                    if(typeof _data[i] === 'object' && _data[i].name){
-                        vm.datas.push(_data[i]);
-                    }
-                }
-                last += 20;
+                //First variant
+                //for(var i in _data){
+                //    if(typeof _data[i] === 'object' && _data[i].name){
+                //        vm.datas.push(_data[i]);
+                //    }
+                //}
+                //last += 20;
+                //
+                //second variant
+                angular.forEach(_data, function (elem) {
+                    vm.datas.push(elem);
+                    last++;
+                })
             });
         };
 
