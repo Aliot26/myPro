@@ -1103,13 +1103,17 @@ function configMain($routeProvider){
 
         vm.datas = [];
         var last = 0;
-        fitfire.getData('' +last, 10).then(function (_data) {
-            vm.datas = _data;
-            last += 20;
-        });
+        //fitfire.getData('' +last, 10).then(function (_data) {
+        //    vm.datas = _data;
+        //    last += 20;
+        //});
         vm.loadMore = function () {
             fitfire.getData('' +last, 10).then(function (_data) {
-                vm.datas.concat(_data);
+                for(var i in _data){
+                    if(typeof _data[i] === 'object' && _data[i].name){
+                        vm.datas.push(_data[i]);
+                    }
+                }
                 last += 20;
             });
         };

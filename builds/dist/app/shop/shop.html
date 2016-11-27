@@ -5,10 +5,18 @@
 <br>
 <button class="btn btn-raised btn-primary" ng-click="vm.sendSon()">Send Son</button>
 <br>
-<div class="list-group">
-    <ul infinite-scroll="vm.loadMore()" class="">
-        <li ng-repeat="u in vm.datas">
-            {{u.name}} - {{u.age}}
-        </li>
-    </ul>
+<div class="list-group" infinite-scroll="vm.loadMore()" >
+    <div ng-repeat="u in vm.datas">
+        <div class="list-group-item">
+            <div class="row-picture">
+                <img class="circle" src="{{u.picture}}" alt="icon">
+            </div>
+            <div class="row-content">
+                <h4 class="list-group-item-heading">{{u.name.first}} {{u.name.last}}</h4>
+                <p class="list-group-item-text">age - {{u.age}}</p>
+                <p class="list-group-item-text">eyeColor - {{u.eyeColor}}</p>
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+    </div>
 </div>
