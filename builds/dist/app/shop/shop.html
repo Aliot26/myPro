@@ -4,9 +4,16 @@
 <div>Text</div>
 <br>
 <button class="btn btn-raised btn-primary" ng-click="vm.sendSon()">Send Son</button>
+<button class="btn btn-raised btn-primary" ng-click="vm.hide=!vm.hide">Toggle</button>
+<br>
+<div class="panel" ng-if="vm.hide">
+    <div class="panel-body">
+        Hello animation
+    </div>
+</div>
 <br>
 <div class="list-group" infinite-scroll="vm.loadMore()" >
-    <div ng-repeat="u in vm.datas">
+    <div ng-repeat="u in vm.datas" class="element">
         <div class="list-group-item">
             <div class="row-picture">
                 <img class="circle" src="{{u.picture}}" alt="icon">

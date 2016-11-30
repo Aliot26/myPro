@@ -1068,7 +1068,9 @@ function configMain($routeProvider){
     function ShopCtrl($scope, $rootScope, $log, Son, $q, fitfire) {
         var vm = this;
         $rootScope.curPath = 'shop';
+        vm.hide = function () {
 
+        };
         vm.sendSon = function () {
             var son1 = Son.go2Shop().then(
                 function (data) {
