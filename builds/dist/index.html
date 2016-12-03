@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="ngFit"> <!---->
+<html ng-app="myBlog"> <!---->
 <head lang="ru-RU">
     <meta charset="UTF-8">
     <title>This is Demo Template Which Use sass, gulp and npm-server</title>
@@ -10,7 +10,7 @@
 <body>
 
 <div ng-include="'app/navbar/navbar.html'"></div>
-<div class="container" ng-view></div>
+<div class="container ngv" ng-view></div>
 <div ng-include="'app/navbar/login.html'"></div>
 <div ng-include="'app/navbar/registration.html'"></div>
 
@@ -42,15 +42,5 @@
 </script>
 <!-- Our JS App Fies -->
 <script src="app/app.js"></script>
-<script>
-    //(function () {
-    //    setTimeout(function () {
-    //        var $inj = angular.bootstrap(document, ['ngFit']);
-    //        var $rootScope = $inj.get('$rootScope');
-    //        $rootScope.$broadcast('init', 'hello');/// расспространяет событие по потомкам(вниз)
-    //        ///$rootScope.$emit(.....);/// расспространяет событие по древу вверх
-    //    }, 2000);
-    //})();
-</script>
 </body>
 </html>

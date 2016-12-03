@@ -2,7 +2,7 @@
     "use strict";
 
     angular
-        .module('ngFit.status', [
+        .module('myBlog.status', [
                 'ngRoute','Authentication'
         ])
         //.constant('SERVER_URL', 'http://localhost:8000/server.js')

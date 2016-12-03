@@ -1,11 +1,11 @@
 ;(function () {
     'use strict';
     angular
-        .module('ngFit.shop', [
+        .module('myBlog.shop', [
                         'ngRoute',
-                        'ngFit.status',
+                        'myBlog.status',
                         'infinite-scroll',
-                        'ngFit.fitfire.service'
+                        'myBlog.fitfire.service'
         ])
         .config(['$routeProvider', configShop])
         .controller('ShopCtrl', ShopCtrl)

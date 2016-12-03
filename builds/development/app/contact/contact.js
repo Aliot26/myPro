@@ -2,7 +2,7 @@
     "use strict";
 
     angular
-        .module('ngFit.contact', ['ngRoute'])
+        .module('myBlog.contact', ['ngRoute'])
         .config(['$routeProvider', config])
         .controller('ContactCtrl', ContactCtrl)
         .directive('exampler', exampler)

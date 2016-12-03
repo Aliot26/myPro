@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('ngFit.fitfire.service', ['firebase'])
+        .module('myBlog.fitfire.service', ['firebase'])
         .service('fitfire', fitfire);
     
     fitfire.$inject = ['$log', 'FIREBASE_URL', '$firebaseObject', '$firebaseArray', '$q'];
@@ -20,23 +20,6 @@
         this.getUsers = function(cb){
             return userArr.$loaded(cb)
         };
-        
-        //this.getUsers = function(cb){
-        //    var deferred = $q.defer();
-//
-        //    var userArr = $firebaseArray(userRef);
-//
-        //    userArr.$loaded()
-        //        .then(function(_data){
-        //            deferred.resolve(_data);
-        //        })
-        //        .catch(function(error){
-        //            deferred.reject(error);
-        //        });
-//
-        //    return deferred.promise;
-        //};            console.log('qaaaaaaa');
-
 
         refObj.$loaded(function(){
             self.dbObj = refObj;

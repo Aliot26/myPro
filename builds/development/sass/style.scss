@@ -15,6 +15,16 @@ body {
   font-size: $font-size-base;
 }
 
+.navbar{
+  width: 100%;
+  position: fixed;
+  z-index: 99999;
+}
+
+.ngv{
+  padding-top: 50px;
+}
+
 .animate{
   transition: all linear 2s;
 }

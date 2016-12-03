@@ -1,7 +1,7 @@
 ;(function() {
     'use strict';
     angular
-        .module('ngFit.about', ['ngRoute', 'ngFit.status'])
+        .module('myBlog.about', ['ngRoute', 'myBlog.status'])
         .config(['$routeProvider', configAbout])
         .controller('AboutCtrl', AboutCtrl)
         

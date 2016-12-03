@@ -3,17 +3,17 @@ window.onload = function(){$.material.init();};
     'use strict';
 
     angular
-        .module('ngFit', [
+        .module('myBlog', [
             'ngRoute',
             'ngCookies',
-            'ngFit.fitfire.service',
+            'myBlog.fitfire.service',
             'Authentication',
-            'ngFit.main',
-            'ngFit.about',
-            'ngFit.contact',
-            'ngFit.shop',
+            'myBlog.main',
+            'myBlog.about',
+            'myBlog.contact',
+            'myBlog.shop',
             'ngAnimate',
-            'ngFit.status'
+            'myBlog.status'
         ])
         .config(Config)
         .constant('FIREBASE_URL', 'https://mypro-b3c3e.firebaseio.com');
@@ -260,7 +260,7 @@ window.onload = function(){$.material.init();};
     'use strict';
 
     angular
-        .module('ngFit.fitfire.service', ['firebase'])
+        .module('myBlog.fitfire.service', ['firebase'])
         .service('fitfire', fitfire);
     
     fitfire.$inject = ['$log', 'FIREBASE_URL', '$firebaseObject', '$firebaseArray', '$q'];
@@ -278,23 +278,6 @@ window.onload = function(){$.material.init();};
         this.getUsers = function(cb){
             return userArr.$loaded(cb)
         };
-        
-        //this.getUsers = function(cb){
-        //    var deferred = $q.defer();
-//
-        //    var userArr = $firebaseArray(userRef);
-//
-        //    userArr.$loaded()
-        //        .then(function(_data){
-        //            deferred.resolve(_data);
-        //        })
-        //        .catch(function(error){
-        //            deferred.reject(error);
-        //        });
-//
-        //    return deferred.promise;
-        //};            console.log('qaaaaaaa');
-
 
         refObj.$loaded(function(){
             self.dbObj = refObj;
@@ -334,67 +317,10 @@ window.onload = function(){$.material.init();};
 
 })();
 
-///var myApp = angular.module('myApp', []);
-///
-///factory, service, value, constant — всего лишь синтаксический сахар для provider
-/////service style, probably the simplest one
-///myApp.service('helloWorldFromService', function() {
-///    this.sayHello = function() {
-///        return "Hello, World!"
-///    };
-///});
-///
-/////factory style, more involved but more sophisticated
-///myApp.factory('helloWorldFromFactory', function() {
-///         ///private
-///     что-нить (к этим переменным мы никогда не достучимся(не так как в провайдере, где можно переменную подменить на этапе конфига))
-///    return { // здесь уже все public
-///        sayHello: function() {
-///            return "Hello, World!"
-///        }
-///    };
-///});
-///
-/////provider style, full blown, configurable version
-///myApp.provider('helloWorld', function() {
-///
-///    this.name = 'Default';
-///
-///    this.$get = function() {
-///        var name = this.name;
-///        return {
-///            sayHello: function() {
-///                return "Hello, " + name + "!"
-///            }
-///        }
-///    };
-///
-///    this.setName = function(name) {
-///        this.name = name;
-///    };
-///});
-///
-/////hey, we can configure a provider!  ///через config мы можем обратиться к приватной части провайдера(та которая НЕ $get)
-///myApp.config(function(helloWorldProvider){
-///    helloWorldProvider.setName('World');
-///});
-///
-///
-///function MyCtrl($scope, helloWorld, helloWorldFromFactory, helloWorldFromService) {
-///
-///    $scope.hellos = [
-///        helloWorld.sayHello(),
-///        helloWorldFromFactory.sayHello(),
-///        helloWorldFromService.sayHello()];
-///}
-
-///<div ng-controller="MyCtrl">
-///{{hellos}}
-///</div>
 ;(function() {
     'use strict';
     angular
-        .module('ngFit.about', ['ngRoute', 'ngFit.status'])
+        .module('myBlog.about', ['ngRoute', 'myBlog.status'])
         .config(['$routeProvider', configAbout])
         .controller('AboutCtrl', AboutCtrl)
         
@@ -660,7 +586,7 @@ window.onload = function(){$.material.init();};
     "use strict";
 
     angular
-        .module('ngFit.contact', ['ngRoute'])
+        .module('myBlog.contact', ['ngRoute'])
         .config(['$routeProvider', config])
         .controller('ContactCtrl', ContactCtrl)
         .directive('exampler', exampler)
@@ -868,7 +794,7 @@ window.onload = function(){$.material.init();};
 ///    Так value доступно только сервису, провайдеру недоступно. А вот constant доступен и тому и другому. Но константа не декорируется
 
 angular
-    .module('ngFit.main', ['ngRoute', 'firebase'])
+    .module('myBlog.main', ['ngRoute', 'firebase'])
     .config(configMain)
     .controller('MainCtrl', MainCtrl);
 
@@ -945,7 +871,7 @@ function configMain($routeProvider){
     "use strict";
 
     angular
-        .module('ngFit.status', [
+        .module('myBlog.status', [
                 'ngRoute','Authentication'
         ])
         //.constant('SERVER_URL', 'http://localhost:8000/server.js')
@@ -1009,11 +935,11 @@ function configMain($routeProvider){
 ;(function () {
     'use strict';
     angular
-        .module('ngFit.shop', [
+        .module('myBlog.shop', [
                         'ngRoute',
-                        'ngFit.status',
+                        'myBlog.status',
                         'infinite-scroll',
-                        'ngFit.fitfire.service'
+                        'myBlog.fitfire.service'
         ])
         .config(['$routeProvider', configShop])
         .controller('ShopCtrl', ShopCtrl)

@@ -3,17 +3,17 @@ window.onload = function(){$.material.init();};
     'use strict';
 
     angular
-        .module('ngFit', [
+        .module('myBlog', [
             'ngRoute',
             'ngCookies',
-            'ngFit.fitfire.service',
+            'myBlog.fitfire.service',
             'Authentication',
-            'ngFit.main',
-            'ngFit.about',
-            'ngFit.contact',
-            'ngFit.shop',
+            'myBlog.main',
+            'myBlog.about',
+            'myBlog.contact',
+            'myBlog.shop',
             'ngAnimate',
-            'ngFit.status'
+            'myBlog.status'
         ])
         .config(Config)
         .constant('FIREBASE_URL', 'https://mypro-b3c3e.firebaseio.com');
