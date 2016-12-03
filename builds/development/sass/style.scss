@@ -16,5 +16,10 @@ body {
 }
 
 .animate{
-  transition: all linear 0,5s;
+  transition: all linear 2s;
+}
+
+.animate.ng-enter,
+.animate.ng-leave-active{
+  opacity: 0;
 }

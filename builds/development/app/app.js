@@ -12,6 +12,7 @@ window.onload = function(){$.material.init();};
             'ngFit.about',
             'ngFit.contact',
             'ngFit.shop',
+            'ngAnimate',
             'ngFit.status'
         ])
         .config(Config)

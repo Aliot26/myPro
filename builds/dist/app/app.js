@@ -12,6 +12,7 @@ window.onload = function(){$.material.init();};
             'ngFit.about',
             'ngFit.contact',
             'ngFit.shop',
+            'ngAnimate',
             'ngFit.status'
         ])
         .config(Config)
@@ -1068,9 +1069,7 @@ function configMain($routeProvider){
     function ShopCtrl($scope, $rootScope, $log, Son, $q, fitfire) {
         var vm = this;
         $rootScope.curPath = 'shop';
-        vm.hide = function () {
-
-        };
+        vm.hide = true;
         vm.sendSon = function () {
             var son1 = Son.go2Shop().then(
                 function (data) {
