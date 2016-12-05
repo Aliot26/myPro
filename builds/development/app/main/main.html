@@ -12,7 +12,7 @@
     <button class="btn btn-raised btn-success" ng-click="vm.closeEdit()">Cancel</button>
     <button class="btn btn-raised btn-danger" ng-show="vm.user.$id" ng-click="vm.deleteUser()">Delete</button>
 </form>
-<i class="fa fa-refresh fa-spin fa-3x fa-fw" aria-hidden="true"></i>
+
 <table class="table table-hover">
     <tbody>
         <tr ng-repeat="user in vm.users" ng-click="vm.setEdit(user)">

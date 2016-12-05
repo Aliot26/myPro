@@ -10,9 +10,22 @@
 angular
     .module('myBlog.main', ['ngRoute', 'firebase'])
     .config(configMain)
-    .controller('MainCtrl', MainCtrl);
+    .controller('MainCtrl', MainCtrl)
+    .directive('btnAutoCollapse', AutoCollapse);
 
 MainCtrl.$inject = ['$scope', '$rootScope', '$log', 'fitfire'];
+
+function AutoCollapse() {
+    return {
+        restrict: 'A',
+        scope: {},
+        link: function (scope, element, attrs) {
+            element.on('click', function(event) {
+                $(".navbar-collapse.in").collapse('hide');
+            });
+        }
+    }
+}
 
 function MainCtrl($scope, $rootScope, $log, fitfire){
     $log.debug('MainCtrl start');

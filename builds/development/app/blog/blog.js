@@ -1,14 +1,14 @@
 ;(function () {
     'use strict';
     angular
-        .module('myBlog.shop', [
+        .module('myBlog.blog', [
                         'ngRoute',
                         'myBlog.status',
                         'infinite-scroll',
                         'myBlog.fitfire.service'
         ])
-        .config(['$routeProvider', configShop])
-        .controller('ShopCtrl', ShopCtrl)
+        .config(['$routeProvider', configBlog])
+        .controller('BlogCtrl', BlogCtrl)
         .factory('Son', function ($q) {
             var o = {};
 
@@ -16,12 +16,12 @@
                 var deferred = $q.defer();
                 //console.log(deferred);
                 setTimeout(function () {
-                    deferred.notify('I go to the shop ' + new Date());
+                    deferred.notify('I go to the blog ' + new Date());
 
                 }, 50);
 
                 setTimeout(function () {
-                    deferred.notify('I came to the shop ' + new Date());
+                    deferred.notify('I came to the blog ' + new Date());
 
                     var eggs = parseInt(Math.random() * 100);
                     if ((eggs % 2)) {
@@ -58,9 +58,9 @@
 
     //ShopCtrl.$inject = ['$scope', '$rootScope', '$log'];
 
-    function ShopCtrl($scope, $rootScope, $log, Son, $q, fitfire) {
+    function BlogCtrl($scope, $rootScope, $log, Son, $q, fitfire) {
         var vm = this;
-        $rootScope.curPath = 'shop';
+        $rootScope.curPath = 'blog';
         vm.hide = true;
         vm.sendSon = function () {
             var son1 = Son.go2Shop().then(
@@ -121,11 +121,11 @@
         $log.log('shop');
     }
 
-    function configShop($routeProvider) {
+    function configBlog($routeProvider) {
         $routeProvider
-            .when('/shop', {
-                templateUrl: 'app/shop/shop.html',
-                controller: 'ShopCtrl',
+            .when('/blog', {
+                templateUrl: 'app/blog/blog.html',
+                controller: 'BlogCtrl',
                 controllerAs: 'vm'
                 //resolve: {
                 //    'currentAuth': function (authentication) {

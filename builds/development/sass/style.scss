@@ -18,7 +18,17 @@ body {
 .navbar{
   width: 100%;
   position: fixed;
-  z-index: 99999;
+  z-index: 9999;
+}
+
+.modal-dialog{
+  margin: 55px auto;
+}
+
+@media (min-width: 768px){
+  .modal-dialog {
+    margin: 55px auto;
+  }
 }
 
 .ngv{

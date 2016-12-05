@@ -1,4 +1,7 @@
 window.onload = function(){$.material.init();};
+
+
+
 (function(){
     'use strict';
 
@@ -11,7 +14,7 @@ window.onload = function(){$.material.init();};
             'myBlog.main',
             'myBlog.about',
             'myBlog.contact',
-            'myBlog.shop',
+            'myBlog.blog',
             'ngAnimate',
             'myBlog.status'
         ])
