@@ -23,7 +23,7 @@
             var user = auth.currentUser;
             //console.log(user, 'user');
             var uid= user.uid;
-            var userRef = ref.child('users').child(uid);
+            var userRef = ref.child('userReg').child(uid);
 
             var nam = $firebaseObject(userRef);
             if(user != null){
@@ -71,7 +71,7 @@
                     //var credential = result.credential;
                     //console.log(credential, 'credential');
                     // get accessToken, idToken and provider
-                    var userRef = ref.child('users').child(id);
+                    var userRef = ref.child('userReg').child(id);
                     userRef.set({
                         user: name,
                         photo: photo,
@@ -100,7 +100,7 @@
                     //var credential = result.credential;
                     //console.log(credential, 'credential');
                     // get accessToken, idToken and provider
-                    var userRef = ref.child('users').child(id);
+                    var userRef = ref.child('userReg').child(id);
                     userRef.set({
                         user: name,
                         photo: photo,
@@ -128,12 +128,13 @@
                     //var credential = result.credential;
                     //console.log(credential, 'credential');
                     // get accessToken, idToken and provider
-                    var userRef = ref.child('users').child(id);
+                    var userRef = ref.child('userReg').child(id);
                     userRef.set({
                         user: name,
                         photo: photo,
                         email: result.user.email
                     });
+
                     //var ss = provider.addScope('https://www.googleapis.com/auth/plus.login');
                     //console.log(ss, 'ss');
                     // This gives you a Google Access Token. You can use it to access the Google API.
@@ -196,7 +197,7 @@
                  return auth.createUserWithEmailAndPassword(_user.email, _user.password)
                     .then(function (firebaseUser) {
                         $log.debug('User ' + firebaseUser.uid + ' created');
-                        var userRef = ref.child('users').child(firebaseUser.uid);
+                        var userRef = ref.child('userReg').child(firebaseUser.uid);
                         userRef.set({
                             firstname: _user.firstname,
                             lastname: _user.lastname,

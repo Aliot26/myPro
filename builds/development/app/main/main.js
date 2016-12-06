@@ -11,10 +11,22 @@ angular
     .module('myBlog.main', ['ngRoute', 'firebase'])
     .config(configMain)
     .controller('MainCtrl', MainCtrl)
-    .directive('btnAutoCollapse', AutoCollapse);
+    .directive('btnAutoCollapse', AutoCollapse)
+    .directive('dialogAutoCollapse', DialogCollapse);
 
 MainCtrl.$inject = ['$scope', '$rootScope', '$log', 'fitfire'];
 
+function DialogCollapse() {
+    return{
+        restrict: 'A',
+        scope: {},
+        link: function (scope, element, attrs) {
+            element.on('click', function(event) {
+                $('.modal').modal('hide');
+            });
+        }
+    }
+}    
 function AutoCollapse() {
     return {
         restrict: 'A',
