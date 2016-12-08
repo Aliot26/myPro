@@ -208,6 +208,7 @@
                     })
                     .catch(function (error) {
                         $log.error('Not created', error);
+                         return alert('Not created : ' + error);
                     });
             }
         };

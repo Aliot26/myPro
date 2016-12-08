@@ -3,28 +3,45 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Sing in</h4>
+                <h4 class="modal-title">Form for registration</h4>
             </div>
             <div class="modal-body">
-                <form name="registrationForm" ng-submit="ac.register()">
+                <form name="registrationForm" id="form" ng-submit="ac.register()">
                     <div class="form-group">
-                        <input type="text" class="form-control" ng-model="ac.nUser.firstname" placeholder="Firstname">
+                        <input type="text" name="Firstname" class="form-control" ng-model="ac.nUser.firstname" placeholder="Firstname" required>
+                        <div ng-messages="registrationForm.Firstname.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" ng-model="ac.nUser.lastname" placeholder="Lasttname">
+                        <input type="text" name="Lasttname" class="form-control" ng-model="ac.nUser.lastname" placeholder="Lasttname" required>
+                        <div ng-messages="registrationForm.Lasttname.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" ng-model="ac.nUser.email" placeholder="Email">
+                        <input type="email" name="Email" class="form-control" ng-model="ac.nUser.email" placeholder="Email" required>
+                        <div ng-messages="registrationForm.Email.$error">
+                            <div ng-message="required">This field is required</div>
+                            <div ng-message="email">Your email address is invalid</div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" ng-model="ac.nUser.password" placeholder="Password">
+                        <input type="password" name="Password" class="form-control" ng-model="ac.nUser.password" placeholder="Password" ng-minlength="6" ng-maxlength="50" required>
+                        <div ng-messages="registrationForm.Password.$error">
+                            <div ng-message="required">This field is required</div>
+                            <div ng-message="minlength">Message must be over 6 characters</div>
+                            <div ng-message="maxlength">Message must not exceed 50 characters</div>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-raised btn-primary" dialog-auto-collapse>Register</button>
+                    <button type="submit" class="btn btn-raised btn-primary">Register</button>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
+
         </div>
     </div>
+
 </div>

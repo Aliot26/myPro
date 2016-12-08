@@ -8,7 +8,7 @@
 ///    Так value доступно только сервису, провайдеру недоступно. А вот constant доступен и тому и другому. Но константа не декорируется
 
 angular
-    .module('myBlog.main', ['ngRoute', 'firebase'])
+    .module('myBlog.main', ['ngRoute', 'firebase', 'ngMessages'])
     .config(configMain)
     .controller('MainCtrl', MainCtrl)
     .directive('btnAutoCollapse', AutoCollapse)

@@ -9,6 +9,7 @@ window.onload = function(){$.material.init();};
         .module('myBlog', [
             'ngRoute',
             'ngCookies',
+            'ngMessages',
             'myBlog.fitfire.service',
             'Authentication',
             'myBlog.main',

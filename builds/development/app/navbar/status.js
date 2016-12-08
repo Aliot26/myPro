@@ -19,7 +19,7 @@
             };
     
             vm.register = function () {
-                authentication.register(vm.nUser);
+                authentication.register(vm.nUser);                
             };
 
             vm.login = function(){

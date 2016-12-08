@@ -6,12 +6,21 @@
                 <h4 class="modal-title">Sing in</h4>
             </div>
             <div class="modal-body">
-                <form name="loginForm">
+                <form name="loginForm"  id="form">
                     <div class="form-group">
-                        <input type="email" class="form-control" ng-model="ac.credentials.email" placeholder="Email">
+                        <input type="email" name="Email" class="form-control" ng-model="ac.credentials.email" placeholder="Email" required>
+                        <div ng-messages="loginForm.Email.$error">
+                            <div ng-message="required">This field is required</div>
+                            <div ng-message="email">Your email address is invalid</div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" ng-model="ac.credentials.password" placeholder="Password">
+                        <input type="text" name="Password" class="form-control" ng-model="ac.credentials.password" placeholder="Password" required>
+                        <div ng-messages="loginForm.Password.$error">
+                            <div ng-message="required">This field is required</div>
+                            <div ng-message="minlength">Message must be over 6 characters</div>
+                            <div ng-message="maxlength">Message must not exceed 50 characters</div>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-raised btn-primary" ng-click="ac.login()" dialog-auto-collapse>Login</button>
                     <br><br>
