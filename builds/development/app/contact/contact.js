@@ -197,6 +197,7 @@
                 templateUrl: 'app/contact/contact.html',
                 controller: 'ContactCtrl',
                 controllerAs: 'vm'
-            });
+            })
+            
     }
 })();

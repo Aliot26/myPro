@@ -10,10 +10,10 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse" btn-auto-collapse>
             <ul class="nav navbar-nav">
-                <li ng-class="{'active':(curPath == 'main')}"><a href="#/">About me</a></li>
-                <li ng-class="{'active':(curPath == 'about')}"><a href="#/about">About</a></li>
-                <li ng-class="{'active':(curPath == 'blog')}"><a href="#/blog">Blog</a></li>
-                <li ng-class="{'active':(curPath == 'contact')}"><a href="#/contact">Contact</a></li>
+                <li ng-class="{'active':(curPath == 'main')}"><a href="/">About me</a></li>
+                <li ng-class="{'active':(curPath == 'about')}"><a href="/about">About</a></li>
+                <li ng-class="{'active':(curPath == 'blog')}"><a href="/blog">Blog</a></li>
+                <li ng-class="{'active':(curPath == 'contact')}"><a href="/contact">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-controller="StatusCtrl as sc">
                 <li ng-show="signedIn()"><a href=""><img ng-src="{{currentUser.photo}}" width="24" height="24" class="img-circle"/></a> </li>

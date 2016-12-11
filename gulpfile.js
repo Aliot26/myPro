@@ -68,6 +68,7 @@ gulp.task('webserver', function() {
     gulp.src('builds/dist/')
         .pipe(webserver({
             livereload: true,
+            fallback: 'index.html',
             open: true
         }));
 });
